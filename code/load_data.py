@@ -26,7 +26,7 @@ class Dataset(Dataset):
 
         return X, y, ID
 
-def create_dataset(dataset, img_path, labels_path, batch_size=8, train=True):
+def create_dataset(dataset, img_path, labels_path, batch_size, train=True):
     img_labels = pickle.load(open(labels_path, 'rb'))
     img_keys = sorted(list(img_labels.keys()))
     img_paths = [img_path + x for x in sorted(list(img_labels.keys()))]
@@ -40,7 +40,7 @@ def create_dataset(dataset, img_path, labels_path, batch_size=8, train=True):
             T.Resize((256, 256)),
             T.ToTensor(),
             normalize
-        ])        
+        ])
         shuffle = True
     else:
         transform = T.Compose([
@@ -48,8 +48,8 @@ def create_dataset(dataset, img_path, labels_path, batch_size=8, train=True):
             T.ToTensor(),
             normalize
         ])
-        shuffle = False    
+        shuffle = False
     dset = Dataset(img_keys, img_paths, img_labels, transform)
     loader = DataLoader(dset, batch_size=batch_size, shuffle=shuffle, num_workers=1)
-    
-    return loader 
+
+    return loader

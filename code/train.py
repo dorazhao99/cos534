@@ -5,15 +5,15 @@ import torch
 import torchvision
 from torchvision import datasets, models, transforms
 import torch.nn as nn
-import torch.optim as optim 
+import torch.optim as optim
 import copy
 
 from load_data import *
 
-def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
+def train_model(model, outdir, device, dataloaders, criterion, optimizer, num_epochs):
     since = time.time()
 
-    val_acc_history = []
+    val_acc_history, loss_epoch_list = []
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
@@ -34,12 +34,10 @@ def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
 
             # Iterate over data.
             for i, (inputs, labels, _) in enumerate(dataloaders[phase]):
-                #print(x)
-                #break
                 start = time.time()
                 inputs = inputs.to(device)
                 labels = labels.to(device)
-                #print(inputs, labels)
+
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
@@ -56,11 +54,11 @@ def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
                     if phase == 'train':
                         loss.backward()
                         optimizer.step()
-                end = time.time()              
+                end = time.time()
                 # statistics
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
-                print("Iter {} (Epoch {}), Train Loss = {:.3f} Time / Batch = {:.3f}".format(i, epoch, loss.item(), end - start)) 
+                print("Iter {} (Epoch {}), Train Loss = {:.3f} Time / Batch = {:.3f}".format(i, epoch, loss.item(), end - start))
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
@@ -71,11 +69,19 @@ def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
+
+                # save model
+                torch.save(best_model_wts, 'model_{}.pth'.format(arg['model']))
+
             if phase == 'val':
                 val_acc_history.append(epoch_acc)
+                loss_epoch_list.append(epoch_loss)
 
-        print()
+                # Save the model
+                if (epoch + 1) % 1 == 0:
+                    torch.save(model.state_dict(), '{}/model_{}.pth'.format(outdir, epoch))
 
+    print('Best model at {} with lowest val loss {}'.format(np.argmin(loss_epoch_list), np.min(loss_epoch_list)))
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
     print('Best val Acc: {:4f}'.format(best_acc))
@@ -92,7 +98,7 @@ def init_model(num_classes, feature_extract):
     num_ftrs = model_ft.fc.in_features
     model_ft.fc = nn.Linear(num_ftrs, num_classes)
     input_size = 256
-        
+
     return model_ft, input_size
 
 def set_parameter_requires_grad(model, feature_extracting):
@@ -102,8 +108,9 @@ def set_parameter_requires_grad(model, feature_extracting):
 
 def main():
     parser = argparse.ArgumentParser()
-    
+
     parser.add_argument('--dataset', type=str)
+    parser.add_argument('--batch', type=int, default=32)
     parser.add_argument('--image_path', type=str)
     parser.add_argument('--labels_train', type=str)
     parser.add_argument('--labels_val', type=str)
@@ -112,18 +119,19 @@ def main():
     parser.add_argument('--lr', type=float, default = 0.001)
     parser.add_argument('--num_classes', type=int, default=2)
     parser.add_argument('--device', default=torch.device('cpu'))
+    parser.add_argument('--outdir', type=str)
     arg = vars(parser.parse_args())
-   
+
     # Initialize the model
     feature_extract = False
     model_ft, input_size = init_model(arg['num_classes'], feature_extract)
-   
+
     # Load Dataset
-    trainset = create_dataset(arg['dataset'], arg['image_path'], arg['labels_train'])
-    valset = create_dataset(arg['dataset'], arg['image_path'], arg['labels_val'], train=False)
-    
+    trainset = create_dataset(arg['dataset'], arg['image_path'], arg['labels_train'], arg['batch'])
+    valset = create_dataset(arg['dataset'], arg['image_path'], arg['labels_val'], arg['batch'], train=False)
+
     dataloaders_dict = {
-        'train': trainset, 
+        'train': trainset,
         'val': valset
     }
 
@@ -147,7 +155,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
     print(arg['num_epochs'])
     # Train and evaluate
-    model_ft, hist = train_model(model_ft, arg['device'], dataloaders_dict, criterion, optimizer_ft, num_epochs=arg['num_epochs'])
-    
+    model_ft, hist = train_model(model_ft, arg['outdir'], arg['device'], dataloaders_dict, criterion, optimizer_ft, num_epochs=arg['num_epochs'])
+
 if __name__ == "__main__":
     main()
