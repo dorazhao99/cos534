@@ -26,7 +26,7 @@ class Dataset(Dataset):
 
         return X, y, ID
 
-def create_dataset(dataset, img_path, labels_path, batch_size=16, train=True):
+def create_dataset(dataset, img_path, labels_path, batch_size=8, train=True):
     img_labels = pickle.load(open(labels_path, 'rb'))
     img_keys = sorted(list(img_labels.keys()))
     img_paths = [img_path + x for x in sorted(list(img_labels.keys()))]

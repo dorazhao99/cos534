@@ -33,13 +33,13 @@ def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
             running_corrects = 0
 
             # Iterate over data.
-            print(dataloaders['train'])
-            for inputs, labels, _ in dataloaders[phase]:
+            for i, (inputs, labels, _) in enumerate(dataloaders[phase]):
                 #print(x)
                 #break
+                start = time.time()
                 inputs = inputs.to(device)
                 labels = labels.to(device)
-
+                #print(inputs, labels)
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
@@ -49,17 +49,18 @@ def train_model(model, device, dataloaders, criterion, optimizer, num_epochs):
                     # Get model outputs and calculate loss
                     outputs = model(inputs)
                     loss = criterion(outputs, labels)
-
+                    # print(loss)
                     _, preds = torch.max(outputs, 1)
 
                     # backward + optimize only if in training phase
                     if phase == 'train':
                         loss.backward()
                         optimizer.step()
-
+                end = time.time()              
                 # statistics
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
+                print("Iter {} (Epoch {}), Train Loss = {:.3f} Time / Batch = {:.3f}".format(i, epoch, loss.item(), end - start)) 
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
