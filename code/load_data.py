@@ -30,7 +30,6 @@ def create_dataset(dataset, img_path, labels_path, batch_size, train=True):
     img_labels = pickle.load(open(labels_path, 'rb'))
     img_keys = sorted(list(img_labels.keys()))
     img_paths = [img_path + x for x in sorted(list(img_labels.keys()))]
-    print(img_paths)
 
     normalize = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 

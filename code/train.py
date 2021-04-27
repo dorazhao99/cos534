@@ -13,7 +13,7 @@ from load_data import *
 def train_model(model, outdir, device, dataloaders, criterion, optimizer, num_epochs):
     since = time.time()
 
-    val_acc_history, loss_epoch_list = []
+    val_acc_history, loss_epoch_list = [], []
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
