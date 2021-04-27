@@ -36,9 +36,9 @@ isRace = arg['race']
 
 for file in tqdm(train):
     if isRace:
-        train_labels[file] = np.array(labels[annotations[file]['race']])
+        train_labels[path + file] = np.array(labels[annotations[file]['race']])
     else:
-        train_labels[file] = np.array(labels[annotations[file]['gender']])
+        train_labels[path + file] = np.array(labels[annotations[file]['gender']])
 
 print('Finished processing {} train labels'.format(len(train_labels)))
 with open(arg['labels_train'], 'wb+') as handle:
@@ -47,9 +47,9 @@ with open(arg['labels_train'], 'wb+') as handle:
 val_labels = {}
 for file in tqdm(val):
     if isRace:
-        val_labels[file] = np.array(labels[annotations[file]['race']])
+        val_labels[path + file] = np.array(labels[annotations[file]['race']])
     else:
-        val_labels[file] = np.array(labels[annotations[file]['gender']])
+        val_labels[path + file] = np.array(labels[annotations[file]['gender']])
 
 print('Finished processing {} val labels'.format(len(val_labels)))
 with open(arg['labels_val'], 'wb+') as handle:
@@ -58,9 +58,9 @@ with open(arg['labels_val'], 'wb+') as handle:
 test_labels = {}
 for file in tqdm(test):
     if isRace:
-        test_labels[file] = np.array(labels[annotations[file]['race']])
+        test_labels[path + file] = np.array(labels[annotations[file]['race']])
     else:
-        test_labels[file] = np.array(labels[annotations[file]['gender']])
+        test_labels[path + file] = np.array(labels[annotations[file]['gender']])
 
 print('Finished processing {} test labels'.format(len(test_labels)))
 with open(arg['labels_test'], 'wb+') as handle:
