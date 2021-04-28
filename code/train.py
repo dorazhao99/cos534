@@ -11,7 +11,7 @@ import copy
 from classifier import Classifier
 from load_data import *
     
-def train_model(classifier, outdir, device, dataloaders, criterion, optimizer, num_epochs):
+def train_model(classifier, outdir, device, dataloaders, num_epochs):
     since = time.time()
 
     val_acc_history = []; loss_epoch_list = []
@@ -28,9 +28,9 @@ def train_model(classifier, outdir, device, dataloaders, criterion, optimizer, n
         for phase in ['train', 'val']:
             running_loss = 0.0; running_corrects = 0
             if phase == 'train':
-                running_loss += classifier.train(dataloaders['train'], criterion)
+                running_loss += classifier.train(dataloaders['train'])[0]
             else:
-                running_corrects += classifier.test(dataloaders['val'], criterion)
+                running_corrects += classifier.test(dataloaders['val'])[1]
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
@@ -94,19 +94,17 @@ def main():
     parser.add_argument('--lr', type=float, default = 0.001)
     parser.add_argument('--num_classes', type=int, default=2)
     parser.add_argument('--model_path', type=str, default=None)
-    parser.add_argument('--device', default=torch.device('cpu'))
     parser.add_argument('--dtype', default=torch.float32)
     parser.add_argument('--outdir', type=str)
     arg = vars(parser.parse_args())
 
     # Initialize the model
-    optimizer_ft = optim.Adam(params_to_update, lr=arg['lr'])
-    criterion = nn.CrossEntropyLoss()
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+    print(arg['num_classes'])
     classifier = Classifier(device=device, dtype=arg['dtype'],
                             num_classes=arg['num_classes'], 
-                            input_size=256, 
-                            modelpath=arg['modelpath'])
+                            input_size=256, lr = arg['lr'],
+                            modelpath=arg['model_path'])
 
     # Load Dataset
     trainset = create_dataset(arg['dataset'], arg['image_path'], 
@@ -120,23 +118,22 @@ def main():
     }
 
     # Observe that all parameters are being optimized
-    params_to_update = classifier.model.parameters()
-    feature_extract = False
-    if feature_extract:
-        params_to_update = []
-        for name,param in classifier.model.named_parameters():
-            if param.requires_grad == True:
-                params_to_update.append(param)
-                print("\t", name)
-    else:
-        for name,param in classifier.model.named_parameters():
-            if param.requires_grad == True:
-                print("\t", name)
+    #params_to_update = classifier.model.parameters()
+    #feature_extract = False
+    #if feature_extract:
+    #    params_to_update = []
+    #    for name,param in classifier.model.named_parameters():
+    #        if param.requires_grad == True:
+    #            params_to_update.append(param)
+    #            print("\t", name)
+    #else:
+    #    for name,param in classifier.model.named_parameters():
+    #        if param.requires_grad == True:
+    #            print("\t", name)
     
     # Train and evaluate
-    print('Training for {} epochs'.format(arg['num_epochs']))
-    best_classifier, hist = train_model(classifier, arg['outdir'], arg['device'],
-                                        dataloaders_dict, criterion, optimizer_ft,
+    best_classifier, hist = train_model(classifier, arg['outdir'], device,
+                                        dataloaders_dict,
                                         num_epochs=arg['num_epochs'])
 
 if __name__ == "__main__":
