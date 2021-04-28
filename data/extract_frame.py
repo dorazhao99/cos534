@@ -5,9 +5,13 @@ import argparse
 from face_aligner import get_avg_lightness
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--filepath', type=str, required=True)
-parser.add_argument('--threshold', type=float, default=0.0)
-parser.add_argument('--outdir', type=str, default="CC_images")
+parser.add_argument('--filepath', type=str, required=True, 
+                    help="The path of the .txt file containing all the files in the .zip")
+parser.add_argument('--threshold', type=float, default=0.0, 
+                    help="Lightness threshold to automatically filter out dark images; " +
+                         "keep at 0 to avoid filtering out darker skinned facs.")
+parser.add_argument('--outdir', type=str, default="CC_images", 
+                    help="The directory to save extracted frames.")
 arg = vars(parser.parse_args())
 
 if not os.path.exists(arg['outdir']):
@@ -15,8 +19,9 @@ if not os.path.exists(arg['outdir']):
 
 if arg['filepath'][-1] == '/':
     arg['filepath'] = arg['filepath'][:-1]
+    
 file_depth = len(arg['filepath'].split('/'))
-if file_depth > 2:
+if file_depth > 2: # Ignore folders which are empty (do not contain .mp4 files)
     file = arg['filepath'].split('/')[-1].split('.')[0]
     print('Processing file:', file)
 

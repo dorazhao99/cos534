@@ -1,3 +1,6 @@
+# Adapted from https://www.pyimagesearch.com/2017/05/22/face-alignment-with-opencv-and-python/
+# Aligns face images and crops into square image.
+
 import argparse
 import os
 import cv2
@@ -44,7 +47,7 @@ for z in tqdm(os.listdir(arg['indir'])):
                 faceAligned = fa.align(image, gray, rect)
                 avg_l = get_avg_lightness(faceAligned)
                 if avg_l > arg['threshold']:
-                    print('Saved {}'.format(img))
+                    # print('Saved {}'.format(img))
                     cv2.imwrite('{}/{}/{}'.format(arg['outdir'], z, img), faceAligned)
                 else:
                     print('Too dark: {:.2f}'.format(avg_l))
