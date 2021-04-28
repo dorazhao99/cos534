@@ -26,6 +26,7 @@ class Classifier():
     def __init__(self, device, dtype, optimizer, criterion, num_classes=1, input_size=256, modelpath=None):
         self.device = device     
         self.dtype = dtype
+        self.num_classes = num_classes
         self.model = ResNet50(n_classes=num_classes, input_size=input_size)
         model.require_all_grads(model, feature_extract)
         num_ftrs = model.fc.in_features
@@ -39,10 +40,11 @@ class Classifier():
         
     def train(self, dataloader, criterion):
         # Set model to train mode
+        self.model.to(device=self.device, dtype=self.dtype)
         self.model.train()
         
         # Iterate over data.
-        loss = 0.0
+        loss = 0.0; corrects = 0
         for i, (inputs, labels, _) in enumerate(dataloader):
             start = time.time()
             inputs = inputs.to(device=self.device, dtype=self.dtype)
@@ -76,29 +78,31 @@ class Classifier():
                 
     def test(self, dataloader, criterion):
         # Set model to eval mode
+        self.model.to(device=self.device, dtype=self.dtype)
         self.model.eval()
         
         # Iterate over data.
-        corrects = 0
-        for i, (inputs, labels, _) in enumerate(dataloader):
-            start = time.time()
-            inputs = inputs.to(device=self.device, dtype=self.dtype)
-            labels = labels.to(device=self.device, dtype=self.dtype)
+        loss = 0.0; corrects = 0
+        with torch.no_grad():
+            for i, (inputs, labels, _) in enumerate(dataloader):
+                start = time.time()
+                inputs = inputs.to(device=self.device, dtype=self.dtype)
+                labels = labels.to(device=self.device, dtype=self.dtype)
 
-            # Zero the parameter gradients
-            self.optimizer.zero_grad()
+                # Zero the parameter gradients
+                self.optimizer.zero_grad()
 
-            # Forward batch
-            # track history if only in train
-            with torch.set_grad_enabled(False):
-                # Get model outputs and calculate loss
-                outputs = self.model(inputs)
-                loss = criterion(outputs, labels)
-                # print(loss)
-                _, preds = torch.max(outputs, 1)
-                
-            # Keep track of total corrects
-            loss += loss.item() * inputs.size(0)
-            corrects = torch.sum(preds == labels.data)
+                # Forward batch
+                # track history if only in train
+                with torch.set_grad_enabled(False):
+                    # Get model outputs and calculate loss
+                    outputs = self.model(inputs)
+                    loss = criterion(outputs, labels)
+                    # print(loss)
+                    _, preds = torch.max(outputs, 1)
+
+                # Keep track of total corrects
+                loss += loss.item() * inputs.size(0)
+                corrects = torch.sum(preds == labels.data)
         
         return loss, corrects
