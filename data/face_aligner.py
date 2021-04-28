@@ -1,3 +1,5 @@
+# Adapted from https://www.pyimagesearch.com/2017/05/22/face-alignment-with-opencv-and-python/
+
 import numpy as np
 import cv2
 import os
