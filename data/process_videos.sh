@@ -9,7 +9,7 @@ while read line; do
   echo ""
   echo "Unzipping line $n: $line"
   unzip CC_part_19_1.zip $line
-  python extract_frame.py --filepath $line --threshold 75
+  python extract_frame.py --filepath $line
   rm -r $line
 #   if [[ $n -ge $lim ]]; then
 #     break
@@ -19,7 +19,7 @@ done < $filename
 
 echo ""
 echo "Processing frames..."
-python process_frames.py --threshold 75
+python process_frames.py
 
 echo ""
 echo "All done!"
