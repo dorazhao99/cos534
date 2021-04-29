@@ -94,6 +94,7 @@ def main():
     parser.add_argument('--dtype', default=torch.float32)
     parser.add_argument('--outdir', type=str)
     arg = vars(parser.parse_args())
+    print(arg, '\n', flush=True)
 
     if not path.exists(arg['outdir']):
         makedirs(arg['outdir'])
