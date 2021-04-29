@@ -23,7 +23,7 @@ class ResNet50(nn.Module):
         return outputs
     
 class Classifier():
-    def __init__(self, device, dtype, num_classes, input_size=256, lr=0.001, modelpath=None):
+    def __init__(self, device, dtype, num_classes, input_size=256, lr=0.001, print_freq=50, modelpath=None):
         self.device = device     
         self.dtype = dtype
         self.num_classes = num_classes
@@ -51,7 +51,7 @@ class Classifier():
         self.optimizer = optim.Adam(params_to_update, lr=lr)
         self.criterion = nn.CrossEntropyLoss()        
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, patience=5, verbose=True)
-        self.print_freq = 50
+        self.print_freq = print_freq
         self.epoch = 0
         if modelpath != None:
             self.model.load_state_dict(torch.load(modelpath, map_location=self.device)) # Need to check

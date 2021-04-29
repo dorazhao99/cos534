@@ -89,6 +89,7 @@ def main():
     parser.add_argument('--labels_test', type=str)
     parser.add_argument('--num_epochs', type=int)
     parser.add_argument('--lr', type=float, default = 0.001)
+    parser.add_argument('--print_freq', type=int, default=50)
     parser.add_argument('--num_classes', type=int, default=2)
     parser.add_argument('--model_path', type=str, default=None)
     parser.add_argument('--dtype', default=torch.float32)
@@ -101,10 +102,10 @@ def main():
 
     # Initialize the model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    print(arg['num_classes'])
     classifier = Classifier(device=device, dtype=arg['dtype'],
                             num_classes=arg['num_classes'], 
                             input_size=256, lr = arg['lr'],
+                            print_freq=arg['print_freq'],
                             modelpath=arg['model_path'])
 
     # Load Dataset
