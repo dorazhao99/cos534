@@ -37,7 +37,7 @@ def get_image_paths(img_path, img_keys, img_labels, race=None, gender=None):
         return [img_path + x for x in img_keys]
 
 
-def create_dataset(dataset, img_path, labels_path, batch_size, train=True, gender=None, race=None):
+def create_dataset(img_path, labels_path, batch_size, train=True, gender=None, race=None):
     img_labels = pickle.load(open(labels_path, 'rb'))
     img_keys = sorted(list(img_labels.keys()))
     # img_paths = get_image_paths(img_path, img_keys, img_labels, race, gender)

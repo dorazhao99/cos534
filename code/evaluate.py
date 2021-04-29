@@ -9,7 +9,6 @@ from load_data import *
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str)
     parser.add_argument('--do_gender', action='store_true', default=False)
     parser.add_argument('--modelpath', type=str, default=None)
     parser.add_argument('--labels_test', type=str, default=None)
@@ -29,9 +28,7 @@ def main():
                             modelpath=arg['modelpath'])
     
     # Create dataloader
-    testset = create_dataset(arg['dataset'], arg['labels_test'], 
-                             B=arg['batchsize'], train=False)
-
+    testset = create_dataset(arg['labels_test'], B=arg['batchsize'], train=False)
 
     # Do inference with the model
     loss, corrects = classifier.test(testset, criterion)
