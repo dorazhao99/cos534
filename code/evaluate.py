@@ -40,7 +40,6 @@ def main():
     y_preds = torch.cat(y_preds); y_true = torch.cat(y_true)
     y_preds = y_preds.detach().cpu().numpy()
     y_true = y_true.detach().cpu().numpy()
-    print(y_preds.shape, y_true.shape, flush=True)
     
     # Print out total accuracy
     acc = 100 * corrects.double() / len(testset.dataset)
@@ -52,7 +51,7 @@ def main():
     
     for label in humanlabels:
         idx = humanlabels[label]
-        print("Accuracy for {}: {:.2f}".format(label, 100.0 * cm.diagonal()[idx]), flush=True)
+        print("Accuracy for {:<15}: {:.2f}%".format(label, 100.0 * cm.diagonal()[idx]), flush=True)
 
     # Print results to file
     output = {'pred': list(y_preds.tolist()), 'true': np.stack(y_true).tolist(), 'labels': [x for x in labels]}
