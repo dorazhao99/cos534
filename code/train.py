@@ -29,12 +29,10 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
             if phase == 'train':    
                 running_loss, running_corrects = classifier.train(dataloaders['train'])
             else:
-                running_loss, running_corrects, _ = classifier.test(dataloaders['val'])            
-            #epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            #epoch_acc = running_corrects / len(dataloaders[phase].dataset)
-            epoch_loss = running_loss / (32 * 4)
-            epoch_acc = running_corrects.item() / (32 * 4)
-            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since), flush=True)
+                running_loss, running_corrects = classifier.test(dataloaders['val'])            
+            epoch_loss = running_loss / len(dataloaders[phase].dataset)
+            epoch_acc = running_corrects / len(dataloaders[phase].dataset)
+            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since))
 
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
