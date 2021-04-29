@@ -11,7 +11,6 @@ from load_data import *
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--do_gender', type=int, default=0)
     parser.add_argument('--humanlabels', type=str, default=None)
     parser.add_argument('--modelpath', type=str, default=None)
     parser.add_argument('--labels_test', type=str, default=None)
@@ -37,33 +36,28 @@ def main():
     testset = create_dataset(labels_path=arg['labels_test'], batch_size=arg['batchsize'], train=False)
 
     # Do inference with the model
-    loss, corrects, y_preds = classifier.test(testset)
-    y_preds = np.stack(y_preds).flatten()
+    loss, corrects, y_preds, y_true = classifier.test(testset)
+    y_preds = torch.cat(y_preds); y_true = torch.cat(y_true)
+    y_preds = y_preds.detach().cpu().numpy()
+    y_true = y_true.detach().cpu().numpy()
+    print(y_preds.shape, y_true.shape, flush=True)
     
     # Print out total accuracy
-    acc = corrects.double() / len(testset.dataset)
-    print("Total accuracy: {:.2f}%".format(acc))
-
-    # Print out per-class accuracy
-    # labels_list = torch.stack([labels[x] for x in labels])
-    # print(labels_list.shape, flush=True)
-    y_true = [labels[x] for x in labels]
+    acc = 100 * corrects.double() / len(testset.dataset)
+    print("Total accuracy: {:.2f}%".format(acc), flush=True)
 
     # Get confusion matrix and normalize diagonal entries
     cm = confusion_matrix(y_true, y_preds)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    
+    for label in humanlabels:
+        idx = humanlabels[label]
+        print("Accuracy for {}: {:.2f}".format(label, 100.0 * cm.diagonal()[idx]), flush=True)
 
-    # print results to file
+    # Print results to file
     output = {'pred': list(y_preds.tolist()), 'true': np.stack(y_true).tolist(), 'labels': [x for x in labels]}
     with open(arg['outfile'], 'w') as f:
         json.dump(output, f)
     
-    for label in humanlabels:
-        idx = humanlabels[label]
-        print("Accuracy for {}: {:.2f}".format(label, 100.0 * cm.diagonal()[idx]))
-
-    #output = {'pred': y_preds, 'true': y_true, 'labels': [x for x in labels]}
-    #with open(arg['outfile'], 'w') as f:
-    #    json.dump(output, f)
 if __name__ == "__main__":
     main()
