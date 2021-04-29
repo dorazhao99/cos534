@@ -22,7 +22,7 @@ def main():
     parser.add_argument('--outfile', type=str)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
-
+    
     humanlabels = json.load(open(arg['humanlabels']))
     labels = pickle.load(open(arg['labels_test'], 'rb'))
 
@@ -39,7 +39,7 @@ def main():
     # Do inference with the model
     loss, corrects, y_preds = classifier.test(testset)
     y_preds = np.stack(y_preds).flatten()
-    print(y_preds)
+    
     # Print out total accuracy
     acc = corrects.double() / len(testset.dataset)
     print("Total accuracy: {:.2f}%".format(acc))
