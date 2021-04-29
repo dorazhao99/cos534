@@ -32,7 +32,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
                 running_loss, running_corrects = classifier.test(dataloaders['val'])            
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects / len(dataloaders[phase].dataset)
-            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since))
+            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since), flush=True)
 
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
@@ -94,6 +94,9 @@ def main():
     parser.add_argument('--dtype', default=torch.float32)
     parser.add_argument('--outdir', type=str)
     arg = vars(parser.parse_args())
+
+    if not path.exists(arg['outdir']):
+        makedirs(arg['outdir'])
 
     # Initialize the model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
