@@ -83,7 +83,6 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--batchsize', type=int, default=32)
-    parser.add_argument('--image_path', type=str)
     parser.add_argument('--labels_train', type=str)
     parser.add_argument('--labels_val', type=str)
     parser.add_argument('--labels_test', type=str)
@@ -110,10 +109,8 @@ def main():
                             modelpath=arg['model_path'])
 
     # Load Dataset
-    trainset = create_dataset(arg['image_path'], 
-                              arg['labels_train'], arg['batchsize'])
-    valset = create_dataset(arg['image_path'], 
-                            arg['labels_val'], arg['batchsize'], train=False)
+    trainset = create_dataset(arg['labels_train'], arg['batchsize'])
+    valset = create_dataset(arg['labels_val'], arg['batchsize'], train=False)
 
     dataloaders_dict = {
         'train': trainset,
