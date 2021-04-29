@@ -16,7 +16,7 @@ def accuracy_generalization_matrix(model_names, datasets, device):
     num_datasets = len(datasets)
     result = np.zeros((num_models, num_datasets))
 
-    dataloaders = [create_dataset(dataset[0], dataset[1], dataset[2], dataset[3], train=False) for dataset in datasets]
+    dataloaders = [create_dataset(dataset[1], dataset[2], dataset[3], train=False) for dataset in datasets]
 
     for i, model_name in enumerate(model_names):
         model = torch.load(model_name)
@@ -80,14 +80,14 @@ def compute_fleiss_kappa(num_categories, model_names, device, dataloader):
 
 def fleiss_kappa_gender(model_names, gender, dataset, device, num_genders=2):
     # WARNING: requires dataloader shuffle to be FALSE
-    dataloader = create_dataset(dataset[0], dataset[1], dataset[2], dataset[3], train=False, gender=gender)
+    dataloader = create_dataset(dataset[1], dataset[2], dataset[3], train=False, gender=gender)
     return compute_fleiss_kappa(num_genders, model_names, device, dataloader)
     
 
 
 def fleiss_kappa_race(model_names, race, dataset, device, num_races=4):
     # WARNING: requires dataloader shuffle to be FALSE
-    dataloader = create_dataset(dataset[0], dataset[1], dataset[2], dataset[3], train=False, race=race)
+    dataloader = create_dataset(dataset[1], dataset[2], dataset[3], train=False, race=race)
     return compute_fleiss_kappa(num_races, model_names, device, dataloader)
 
 

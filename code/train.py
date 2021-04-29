@@ -82,7 +82,6 @@ def set_parameter_requires_grad(model, feature_extracting):
 def main():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--dataset', type=str)
     parser.add_argument('--batchsize', type=int, default=32)
     parser.add_argument('--image_path', type=str)
     parser.add_argument('--labels_train', type=str)
@@ -105,9 +104,9 @@ def main():
                             modelpath=arg['model_path'])
 
     # Load Dataset
-    trainset = create_dataset(arg['dataset'], arg['image_path'], 
+    trainset = create_dataset(arg['image_path'], 
                               arg['labels_train'], arg['batchsize'])
-    valset = create_dataset(arg['dataset'], arg['image_path'], 
+    valset = create_dataset(arg['image_path'], 
                             arg['labels_val'], arg['batchsize'], train=False)
 
     dataloaders_dict = {
