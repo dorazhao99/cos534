@@ -51,7 +51,7 @@ class Classifier():
         self.optimizer = optim.Adam(params_to_update, lr=lr)
         self.criterion = nn.CrossEntropyLoss()        
 
-        self.print_freq = 1
+        self.print_freq = 50
         self.epoch = 0
         if modelpath != None:
             self.model.load_state_dict(torch.load(modelpath, map_location=self.device)) # Need to check

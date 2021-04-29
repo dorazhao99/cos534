@@ -99,7 +99,7 @@ def main():
     arg = vars(parser.parse_args())
 
     # Initialize the model
-    device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(arg['num_classes'])
     classifier = Classifier(device=device, dtype=arg['dtype'],
                             num_classes=arg['num_classes'], 
