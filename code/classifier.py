@@ -92,7 +92,7 @@ class Classifier():
             corrects += torch.sum(preds == labels.data)
             
             if i % self.print_freq == 0:
-                print("Iter {} (Epoch {}), Train Loss = {:.3f}".format(i, self.epoch, loss.item()))            
+                print("Iter {}/{} (Epoch {}), Train Loss = {:.3f}".format(i, len(dataloader), self.epoch, loss.item()), flush=True)            
         return total_loss, corrects
             
                 
