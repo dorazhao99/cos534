@@ -1,7 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=train_534
-#SBATCH --output=bfw.txt
+#SBATCH --output=bfw_total.txt
 #
+#SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=48:00:00
 #
@@ -14,4 +15,4 @@ python train.py --dataset $1 \
 --num_epochs 25 \
 --num_classes 4 \
 --lr 0.0003 \
---outdir ../results/$1
+--outdir ../results/$1_total
