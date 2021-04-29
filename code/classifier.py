@@ -51,7 +51,7 @@ class Classifier():
         self.optimizer = optim.Adam(params_to_update, lr=lr)
         self.criterion = nn.CrossEntropyLoss()        
 
-        self.print_freq = 100
+        self.print_freq = 1
         self.epoch = 0
         if modelpath != None:
             self.model.load_state_dict(torch.load(modelpath, map_location=self.device)) # Need to check
@@ -62,12 +62,13 @@ class Classifier():
         self.model.train()
         
         # Iterate over data.
-        loss = 0.0; corrects = 0
+        total_loss = 0.0; corrects = 0
         for i, (inputs, labels, _) in enumerate(dataloader):
             start = time.time()
             inputs = inputs.to(device=self.device, dtype=self.dtype)
             labels = labels.to(device=self.device, dtype=self.dtype)
             labels = labels.type(torch.LongTensor)
+
             # Zero the parameter gradients
             self.optimizer.zero_grad()
 
@@ -77,7 +78,6 @@ class Classifier():
                 # Get model outputs and calculate loss
                 outputs = self.model(inputs)
                 loss = self.criterion(outputs, labels)
-                # print(loss)
                 _, preds = torch.max(outputs, 1)
 
                 # backward + optimize
@@ -85,28 +85,28 @@ class Classifier():
                 self.optimizer.step()
                 
             # Keep track of loss
-            loss += loss.item() * inputs.size(0)
-            corrects = torch.sum(preds == labels.data)
+            total_loss += loss.item() * inputs.size(0)
+            corrects += torch.sum(preds == labels.data)
             
             if i % self.print_freq == 0:
-                print("Iter {} (Epoch {}), Train Loss = {:.3f}".format(i, self.epoch, loss.item()))
-            
-        return loss, corrects
+                print("Iter {} (Epoch {}), Train Loss = {:.3f}".format(i, self.epoch, loss.item()))            
+        return total_loss, corrects
             
                 
-    def test(self, dataloader, criterion):
+    def test(self, dataloader):
         # Set model to eval mode
         self.model.to(device=self.device, dtype=self.dtype)
         self.model.eval()
         
         # Iterate over data.
-        loss = 0.0; corrects = 0
+        total_loss = 0.0; corrects = 0
         with torch.no_grad():
             for i, (inputs, labels, _) in enumerate(dataloader):
                 start = time.time()
                 inputs = inputs.to(device=self.device, dtype=self.dtype)
                 labels = labels.to(device=self.device, dtype=self.dtype)
-
+                labels = labels.type(torch.LongTensor)
+                
                 # Zero the parameter gradients
                 self.optimizer.zero_grad()
 
@@ -115,12 +115,11 @@ class Classifier():
                 with torch.set_grad_enabled(False):
                     # Get model outputs and calculate loss
                     outputs = self.model(inputs)
-                    loss = criterion(outputs, labels)
+                    loss = self.criterion(outputs, labels)
                     # print(loss)
                     _, preds = torch.max(outputs, 1)
 
                 # Keep track of total corrects
-                loss += loss.item() * inputs.size(0)
-                corrects = torch.sum(preds == labels.data)
-        
-        return loss, corrects
+                total_loss += loss.item() * inputs.size(0)
+                corrects += torch.sum(preds == labels.data)
+        return total_loss, corrects

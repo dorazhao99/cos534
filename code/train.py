@@ -25,15 +25,15 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
         print('-' * 10)
 
         # Each epoch has a training and validation phase
-        for phase in ['train', 'val']:
-            running_loss = 0.0; running_corrects = 0
-            if phase == 'train':
-                running_loss += classifier.train(dataloaders['train'])[0]
+        for phase in ['train', 'val']:            
+            if phase == 'train':    
+                running_loss, running_corrects = classifier.train(dataloaders['train'])
             else:
-                running_corrects += classifier.test(dataloaders['val'])[1]
-
-            epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects / len(dataloaders[phase].dataset)
+                running_loss, running_corrects = classifier.test(dataloaders['val'])            
+            #epoch_loss = running_loss / len(dataloaders[phase].dataset)
+            #epoch_acc = running_corrects / len(dataloaders[phase].dataset)
+            epoch_loss = running_loss / (32 * 4)
+            epoch_acc = running_corrects.item() / (32 * 4)
             print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since))
 
             # deep copy the model
@@ -42,7 +42,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
                 best_model_wts = copy.deepcopy(classifier.model.state_dict())
 
                 # save model
-                torch.save(best_model_wts, 'model_{}.pth'.format(arg['model']))
+                torch.save(best_model_wts, '{}/model_best.pth'.format(outdir))
 
             if phase == 'val':
                 val_acc_history.append(epoch_acc)
@@ -133,7 +133,7 @@ def main():
     
     # Train and evaluate
     best_classifier, hist = train_model(classifier, arg['outdir'], device,
-                                        dataloaders_dict,
+                                        dataloaders_dict, 
                                         num_epochs=arg['num_epochs'])
 
 if __name__ == "__main__":
