@@ -29,7 +29,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
             if phase == 'train':    
                 running_loss, running_corrects = classifier.train(dataloaders['train'])
             else:
-                running_loss, running_corrects = classifier.test(dataloaders['val'])            
+                running_loss, running_corrects,_ = classifier.test(dataloaders['val'])            
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects / len(dataloaders[phase].dataset)
             print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since), flush=True)
