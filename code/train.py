@@ -33,7 +33,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
                 running_corrects += classifier.test(dataloaders['val'])[1]
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
+            epoch_acc = running_corrects / len(dataloaders[phase].dataset)
             print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since))
 
             # deep copy the model

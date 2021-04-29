@@ -1,4 +1,18 @@
+4
+	 resnet.fc.weight
+	 resnet.fc.bias
+Epoch 1/25
+----------
+Iter 0 (Epoch 0), Train Loss = 46.555
+Iter 100 (Epoch 0), Train Loss = 40.539
+Iter 200 (Epoch 0), Train Loss = 35.839
+Iter 300 (Epoch 0), Train Loss = 37.396
+train Loss: 0.0024 Acc: 0.0000  Time: 2944.2521
 Traceback (most recent call last):
-  File "train.py", line 3, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
+  File "train.py", line 140, in <module>
+    main()
+  File "train.py", line 135, in main
+    best_classifier, hist = train_model(classifier, arg['outdir'], device,
+  File "train.py", line 33, in train_model
+    running_corrects += classifier.test(dataloaders['val'])[1]
+TypeError: test() missing 1 required positional argument: 'criterion'
