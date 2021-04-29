@@ -20,7 +20,6 @@ def main():
     parser.add_argument('--num_classes', type=int, default=4)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
-
     
     labels = pickle.load(open(arg['labels_test'], 'rb'))
 
@@ -35,7 +34,8 @@ def main():
     testset = create_dataset(labels_path=arg['labels_test'], batch_size=arg['batchsize'], train=False)
 
     # Do inference with the model
-    loss, corrects, y_preds = classifier.test(testset, criterion)
+    criterion = torch.nn.CrossEntropyLoss()
+    loss, corrects, y_preds = classifier.test(testset)
 
     # Print out total accuracy
     acc = corrects.double() / len(testset.dataset)
