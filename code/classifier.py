@@ -12,11 +12,10 @@ class ResNet50(nn.Module):
         self.resnet = models.resnet50(pretrained=pretrained)
         self.require_all_grads(feature_extract)
         num_ftrs = self.resnet.fc.in_features
-        self.resnet.fc = nn.Linear(num_ftrs, n_classes)
         self.input_size = input_size
 
     def require_all_grads(self, feature_extract):
-        for param in self.parameters():
+        for param in self.resnet.parameters():
             param.requires_grad = feature_extract
 
     def forward(self, x):
@@ -28,29 +27,30 @@ class Classifier():
         self.device = device     
         self.dtype = dtype
         self.num_classes = num_classes
-        self.model = ResNet50(n_classes=num_classes, input_size=input_size)
+        self.model = ResNet50(n_classes=num_classes, input_size=input_size, feature_extract=True)
         self.num_ftrs = self.model.resnet.fc.in_features
         self.model.resnet.fc = nn.Linear(self.num_ftrs, self.num_classes)
-
+        if torch.cuda.is_available():
+           self.model.resnet.fc = self.model.resnet.fc.cuda()
         feature_extract = False        
 
         # Observe that all parameters are being optimized
-        params_to_update = self.model.parameters()
+        params_to_update = self.model.resnet.parameters()
         if feature_extract:
             params_to_update = []
-            for name,param in self.model.named_parameters():
+            for name,param in self.model.resnet.named_parameters():
                 if param.requires_grad == True:
                     params_to_update.append(param)
                     print("\t", name)
         else:
-            for name,param in self.model.named_parameters():
+            for name,param in self.model.resnet.named_parameters():
                 if param.requires_grad == True:
                     print("\t", name)
             self.model = self.model.to(device=self.device, dtype=self.dtype)
 
         self.optimizer = optim.Adam(params_to_update, lr=lr)
         self.criterion = nn.CrossEntropyLoss()        
-
+        self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, patience=5, verbose=True)
         self.print_freq = 50
         self.epoch = 0
         if modelpath != None:
@@ -68,7 +68,6 @@ class Classifier():
             inputs = inputs.to(device=self.device, dtype=self.dtype)
             labels = labels.to(device=self.device, dtype=self.dtype)
             labels = labels.type(torch.LongTensor)
-
             # Zero the parameter gradients
             self.optimizer.zero_grad()
 
@@ -77,7 +76,11 @@ class Classifier():
             with torch.set_grad_enabled(True):
                 # Get model outputs and calculate loss
                 outputs = self.model(inputs)
+                if torch.cuda.is_available():
+                    outputs = outputs.cuda()
+                    labels = labels.cuda()
                 loss = self.criterion(outputs, labels)
+                 
                 _, preds = torch.max(outputs, 1)
 
                 # backward + optimize
@@ -115,11 +118,15 @@ class Classifier():
                 with torch.set_grad_enabled(False):
                     # Get model outputs and calculate loss
                     outputs = self.model(inputs)
+       	       	    if torch.cuda.is_available():
+       	       	        outputs = outputs.cuda()
+       	       	        labels = labels.cuda()                    
                     loss = self.criterion(outputs, labels)
                     # print(loss)
                     _, preds = torch.max(outputs, 1)
-
+                 
                 # Keep track of total corrects
                 total_loss += loss.item() * inputs.size(0)
                 corrects += torch.sum(preds == labels.data)
+        self.scheduler.step(total_loss)
         return total_loss, corrects
