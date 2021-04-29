@@ -124,7 +124,7 @@ class Classifier():
                     loss = self.criterion(outputs, labels)
                     # print(loss)
                     _, preds = torch.max(outputs, 1)
-                 
+                # if i > 2: break                 
                 # Keep track of total corrects
                 total_loss += loss.item() * inputs.size(0)
                 corrects += torch.sum(preds == labels.data)
