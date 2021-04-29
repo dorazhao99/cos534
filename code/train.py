@@ -22,19 +22,19 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
     running_loss = 0.0; running_corrects = 0
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch + 1, num_epochs))
-        print('-' * 10)
+        print('-' * 10, flush=True)
 
         # Each epoch has a training and validation phase
         for phase in ['train', 'val']:            
             if phase == 'train':    
                 running_loss, running_corrects = classifier.train(dataloaders['train'])
             else:
-                running_loss, running_corrects = classifier.test(dataloaders['val'])            
+                running_loss, running_corrects, _ = classifier.test(dataloaders['val'])            
             #epoch_loss = running_loss / len(dataloaders[phase].dataset)
             #epoch_acc = running_corrects / len(dataloaders[phase].dataset)
             epoch_loss = running_loss / (32 * 4)
             epoch_acc = running_corrects.item() / (32 * 4)
-            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since))
+            print('{} Loss: {:.4f} Acc: {:.4f}  Time: {:.4f}'.format(phase, epoch_loss, epoch_acc, time.time() - since), flush=True)
 
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
@@ -57,7 +57,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
     print('Best model at {} with lowest val loss {}'.format(np.argmin(loss_epoch_list), np.min(loss_epoch_list)))
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
-    print('Best val acc: {:4f}'.format(best_acc))
+    print('Best val acc: {:4f}'.format(best_acc), flush=True)
 
     # load best model weights
     classifier.model.load_state_dict(best_model_wts)

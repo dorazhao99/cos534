@@ -122,4 +122,4 @@ class Classifier():
                 # Keep track of total corrects
                 total_loss += loss.item() * inputs.size(0)
                 corrects += torch.sum(preds == labels.data)
-        return total_loss, corrects
+        return total_loss, corrects, preds

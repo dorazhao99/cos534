@@ -3,6 +3,7 @@ from os import path, mkdir
 import numpy as np
 import torch
 from torchvision import models
+from sklearn.metrics import confusion_matrix
 
 from classifier import Classifier
 from load_data import *
@@ -10,6 +11,7 @@ from load_data import *
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--do_gender', action='store_true', default=False)
+    parser.add_argument('--humanlabels_to_idx', type=str, required=True)
     parser.add_argument('--modelpath', type=str, default=None)
     parser.add_argument('--labels_test', type=str, default=None)
     parser.add_argument('--batchsize', type=int, default=170)
@@ -17,6 +19,9 @@ def main():
     parser.add_argument('--dtype', default=torch.float32)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
+
+    humanlabels_to_onehot = pickle.load(open(arg['humanlabels_to_idx'], 'rb'))
+    labels = pickle.load(open(arg['labels_test'], 'rb'))
 
     # Initialize the model
     optimizer_ft = optim.Adam(params_to_update, lr=arg['lr'])
@@ -31,9 +36,24 @@ def main():
     testset = create_dataset(arg['labels_test'], B=arg['batchsize'], train=False)
 
     # Do inference with the model
-    loss, corrects = classifier.test(testset, criterion)
+    loss, corrects, y_preds = classifier.test(testset, criterion)
+
+    # Print out total accuracy
     acc = corrects.double() / len(testset.dataset)
     print("Total accuracy: {4.2f}%".format(acc))
+
+    # Print out per-class accuracy
+    labels_list = torch.stack(list(labels.values()))
+    print(labels_list.shape, flush=True)
+    y_true = list(labels.values())
+
+    # Get confusion matrix and normalize diagonal entries
+    cm = confusion_martix(y_true, y_preds)
+    cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+    for label in humanlabels_to_onehot:
+        idx = humanlabels_to_idx[label]
+        print("Accuracy for {}: {:.2f}".format(label, 100.0 * cm.diagonal()[idx]))
 
 if __name__ == "__main__":
     main()
