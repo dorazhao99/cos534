@@ -9,10 +9,10 @@
 #SBATCH --mail-type=all
 #SBATCH --mail-user=dorothyz@princeton.edu
 
-python train.py --dataset $1 \
---labels_train ../data/$1/bfw_race_train.pkl \
---labels_val ../data/$1/bfw_race_val.pkl \
---num_epochs 25 \
---num_classes 4 \
+python train.py \
+--labels_train ../data/$1/bfw_$2_train.pkl \
+--labels_val ../data/$1/bfw_$2_val.pkl \
+--num_epochs 15 \
+--num_classes 2 \
 --lr 0.0003 \
---outdir ../results/$1_total
+--outdir ../results/$1_$2

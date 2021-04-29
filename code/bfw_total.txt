@@ -1,4 +1,5 @@
-4
+{'batchsize': 32, 'labels_train': '../data/bfw/bfw_gender_train.pkl', 'labels_val': '../data/bfw/bfw_gender_val.pkl', 'labels_test': None, 'num_epochs': 15, 'lr': 0.0003, 'print_freq': 50, 'num_classes': 2, 'model_path': None, 'dtype': torch.float32, 'outdir': '../results/bfw_gender'} 
+
 	 conv1.weight
 	 bn1.weight
 	 bn1.bias
@@ -160,308 +161,187 @@
 	 layer4.2.bn3.bias
 	 fc.weight
 	 fc.bias
-Epoch 1/25
+Epoch 1/15
 ----------
-Iter 0 (Epoch 0), Train Loss = 1.491
-Iter 50 (Epoch 0), Train Loss = 0.649
-Iter 100 (Epoch 0), Train Loss = 0.624
-Iter 150 (Epoch 0), Train Loss = 0.595
-Iter 200 (Epoch 0), Train Loss = 0.621
-Iter 250 (Epoch 0), Train Loss = 0.269
-Iter 300 (Epoch 0), Train Loss = 0.243
-Iter 350 (Epoch 0), Train Loss = 0.238
-train Loss: 0.5042 Acc: 0.8108  Time: 61.9226
-val Loss: 0.3844 Acc: 0.8577  Time: 75.4079
-Epoch 2/25
+Iter 0/384 (Epoch 0), Train Loss = 0.715
+Iter 50/384 (Epoch 0), Train Loss = 0.250
+Iter 100/384 (Epoch 0), Train Loss = 0.394
+Iter 150/384 (Epoch 0), Train Loss = 0.112
+Iter 200/384 (Epoch 0), Train Loss = 0.496
+Iter 250/384 (Epoch 0), Train Loss = 0.105
+Iter 300/384 (Epoch 0), Train Loss = 0.077
+Iter 350/384 (Epoch 0), Train Loss = 0.185
+train Loss: 0.2298 Acc: 0.9010  Time: 61.9342
+val Loss: 0.1830 Acc: 0.9268  Time: 75.4488
+Epoch 2/15
 ----------
-Iter 0 (Epoch 1), Train Loss = 0.340
-Iter 50 (Epoch 1), Train Loss = 0.345
-Iter 100 (Epoch 1), Train Loss = 0.254
-Iter 150 (Epoch 1), Train Loss = 0.384
-Iter 200 (Epoch 1), Train Loss = 0.140
-Iter 250 (Epoch 1), Train Loss = 0.200
-Iter 300 (Epoch 1), Train Loss = 0.308
-Iter 350 (Epoch 1), Train Loss = 0.347
-train Loss: 0.3060 Acc: 0.8900  Time: 137.5358
-val Loss: 0.3391 Acc: 0.8831  Time: 150.9302
-Epoch 3/25
+Iter 0/384 (Epoch 1), Train Loss = 0.214
+Iter 50/384 (Epoch 1), Train Loss = 0.049
+Iter 100/384 (Epoch 1), Train Loss = 0.057
+Iter 150/384 (Epoch 1), Train Loss = 0.067
+Iter 200/384 (Epoch 1), Train Loss = 0.051
+Iter 250/384 (Epoch 1), Train Loss = 0.024
+Iter 300/384 (Epoch 1), Train Loss = 0.148
+Iter 350/384 (Epoch 1), Train Loss = 0.053
+train Loss: 0.1306 Acc: 0.9491  Time: 137.6538
+val Loss: 0.1616 Acc: 0.9463  Time: 150.5465
+Epoch 3/15
 ----------
-Iter 0 (Epoch 2), Train Loss = 0.125
-Iter 50 (Epoch 2), Train Loss = 0.093
-Iter 100 (Epoch 2), Train Loss = 0.039
-Iter 150 (Epoch 2), Train Loss = 0.293
-Iter 200 (Epoch 2), Train Loss = 0.248
-Iter 250 (Epoch 2), Train Loss = 0.115
-Iter 300 (Epoch 2), Train Loss = 0.174
-Iter 350 (Epoch 2), Train Loss = 0.163
-train Loss: 0.1964 Acc: 0.9296  Time: 213.0558
-val Loss: 0.3988 Acc: 0.8568  Time: 226.5206
-Epoch 4/25
+Iter 0/384 (Epoch 2), Train Loss = 0.031
+Iter 50/384 (Epoch 2), Train Loss = 0.059
+Iter 100/384 (Epoch 2), Train Loss = 0.031
+Iter 150/384 (Epoch 2), Train Loss = 0.078
+Iter 200/384 (Epoch 2), Train Loss = 0.032
+Iter 250/384 (Epoch 2), Train Loss = 0.094
+Iter 300/384 (Epoch 2), Train Loss = 0.219
+Iter 350/384 (Epoch 2), Train Loss = 0.187
+train Loss: 0.1037 Acc: 0.9616  Time: 212.7203
+val Loss: 0.1242 Acc: 0.9554  Time: 225.7450
+Epoch 4/15
 ----------
-Iter 0 (Epoch 3), Train Loss = 0.345
-Iter 50 (Epoch 3), Train Loss = 0.371
-Iter 100 (Epoch 3), Train Loss = 0.056
-Iter 150 (Epoch 3), Train Loss = 0.346
-Iter 200 (Epoch 3), Train Loss = 0.123
-Iter 250 (Epoch 3), Train Loss = 0.179
-Iter 300 (Epoch 3), Train Loss = 0.189
-Iter 350 (Epoch 3), Train Loss = 0.182
-train Loss: 0.1695 Acc: 0.9400  Time: 288.4115
-val Loss: 0.2704 Acc: 0.9069  Time: 301.8562
-Epoch 5/25
+Iter 0/384 (Epoch 3), Train Loss = 0.105
+Iter 50/384 (Epoch 3), Train Loss = 0.011
+Iter 100/384 (Epoch 3), Train Loss = 0.023
+Iter 150/384 (Epoch 3), Train Loss = 0.244
+Iter 200/384 (Epoch 3), Train Loss = 0.017
+Iter 250/384 (Epoch 3), Train Loss = 0.021
+Iter 300/384 (Epoch 3), Train Loss = 0.021
+Iter 350/384 (Epoch 3), Train Loss = 0.060
+train Loss: 0.0785 Acc: 0.9707  Time: 287.8575
+val Loss: 0.1340 Acc: 0.9505  Time: 300.8535
+Epoch 5/15
 ----------
-Iter 0 (Epoch 4), Train Loss = 0.181
-Iter 50 (Epoch 4), Train Loss = 0.051
-Iter 100 (Epoch 4), Train Loss = 0.079
-Iter 150 (Epoch 4), Train Loss = 0.081
-Iter 200 (Epoch 4), Train Loss = 0.071
-Iter 250 (Epoch 4), Train Loss = 0.069
-Iter 300 (Epoch 4), Train Loss = 0.221
-Iter 350 (Epoch 4), Train Loss = 0.100
-train Loss: 0.1146 Acc: 0.9601  Time: 364.3581
-val Loss: 0.2737 Acc: 0.9108  Time: 377.7827
-Epoch 6/25
+Iter 0/384 (Epoch 4), Train Loss = 0.017
+Iter 50/384 (Epoch 4), Train Loss = 0.048
+Iter 100/384 (Epoch 4), Train Loss = 0.060
+Iter 150/384 (Epoch 4), Train Loss = 0.009
+Iter 200/384 (Epoch 4), Train Loss = 0.220
+Iter 250/384 (Epoch 4), Train Loss = 0.022
+Iter 300/384 (Epoch 4), Train Loss = 0.031
+Iter 350/384 (Epoch 4), Train Loss = 0.210
+train Loss: 0.0639 Acc: 0.9771  Time: 362.1341
+val Loss: 0.1443 Acc: 0.9482  Time: 375.2052
+Epoch 6/15
 ----------
-Iter 0 (Epoch 5), Train Loss = 0.133
-Iter 50 (Epoch 5), Train Loss = 0.024
-Iter 100 (Epoch 5), Train Loss = 0.250
-Iter 150 (Epoch 5), Train Loss = 0.135
-Iter 200 (Epoch 5), Train Loss = 0.157
-Iter 250 (Epoch 5), Train Loss = 0.098
-Iter 300 (Epoch 5), Train Loss = 0.158
-Iter 350 (Epoch 5), Train Loss = 0.166
-train Loss: 0.1063 Acc: 0.9624  Time: 439.8891
-val Loss: 0.2373 Acc: 0.9287  Time: 453.1652
-Epoch 7/25
+Iter 0/384 (Epoch 5), Train Loss = 0.029
+Iter 50/384 (Epoch 5), Train Loss = 0.018
+Iter 100/384 (Epoch 5), Train Loss = 0.071
+Iter 150/384 (Epoch 5), Train Loss = 0.044
+Iter 200/384 (Epoch 5), Train Loss = 0.002
+Iter 250/384 (Epoch 5), Train Loss = 0.013
+Iter 300/384 (Epoch 5), Train Loss = 0.061
+Iter 350/384 (Epoch 5), Train Loss = 0.013
+train Loss: 0.0492 Acc: 0.9820  Time: 437.1821
+val Loss: 0.1796 Acc: 0.9443  Time: 450.4274
+Epoch 7/15
 ----------
-Iter 0 (Epoch 6), Train Loss = 0.024
-Iter 50 (Epoch 6), Train Loss = 0.016
-Iter 100 (Epoch 6), Train Loss = 0.008
-Iter 150 (Epoch 6), Train Loss = 0.071
-Iter 200 (Epoch 6), Train Loss = 0.040
-Iter 250 (Epoch 6), Train Loss = 0.147
-Iter 300 (Epoch 6), Train Loss = 0.130
-Iter 350 (Epoch 6), Train Loss = 0.020
-train Loss: 0.0854 Acc: 0.9679  Time: 515.1272
-val Loss: 0.3591 Acc: 0.8893  Time: 527.9548
-Epoch 8/25
+Iter 0/384 (Epoch 6), Train Loss = 0.032
+Iter 50/384 (Epoch 6), Train Loss = 0.056
+Iter 100/384 (Epoch 6), Train Loss = 0.056
+Iter 150/384 (Epoch 6), Train Loss = 0.004
+Iter 200/384 (Epoch 6), Train Loss = 0.037
+Iter 250/384 (Epoch 6), Train Loss = 0.023
+Iter 300/384 (Epoch 6), Train Loss = 0.015
+Iter 350/384 (Epoch 6), Train Loss = 0.011
+train Loss: 0.0490 Acc: 0.9823  Time: 511.7646
+val Loss: 0.1894 Acc: 0.9443  Time: 525.0593
+Epoch 8/15
 ----------
-Iter 0 (Epoch 7), Train Loss = 0.025
-Iter 50 (Epoch 7), Train Loss = 0.031
-Iter 100 (Epoch 7), Train Loss = 0.032
-Iter 150 (Epoch 7), Train Loss = 0.008
-Iter 200 (Epoch 7), Train Loss = 0.021
-Iter 250 (Epoch 7), Train Loss = 0.021
-Iter 300 (Epoch 7), Train Loss = 0.015
-Iter 350 (Epoch 7), Train Loss = 0.106
-train Loss: 0.0755 Acc: 0.9741  Time: 589.6656
-val Loss: 0.2783 Acc: 0.9163  Time: 602.9533
-Epoch 9/25
+Iter 0/384 (Epoch 7), Train Loss = 0.068
+Iter 50/384 (Epoch 7), Train Loss = 0.027
+Iter 100/384 (Epoch 7), Train Loss = 0.177
+Iter 150/384 (Epoch 7), Train Loss = 0.021
+Iter 200/384 (Epoch 7), Train Loss = 0.016
+Iter 250/384 (Epoch 7), Train Loss = 0.014
+Iter 300/384 (Epoch 7), Train Loss = 0.037
+Iter 350/384 (Epoch 7), Train Loss = 0.006
+train Loss: 0.0431 Acc: 0.9850  Time: 586.8611
+val Loss: 0.1611 Acc: 0.9450  Time: 600.1993
+Epoch 9/15
 ----------
-Iter 0 (Epoch 8), Train Loss = 0.031
-Iter 50 (Epoch 8), Train Loss = 0.005
-Iter 100 (Epoch 8), Train Loss = 0.013
-Iter 150 (Epoch 8), Train Loss = 0.053
-Iter 200 (Epoch 8), Train Loss = 0.123
-Iter 250 (Epoch 8), Train Loss = 0.046
-Iter 300 (Epoch 8), Train Loss = 0.012
-Iter 350 (Epoch 8), Train Loss = 0.125
-train Loss: 0.0686 Acc: 0.9758  Time: 664.5760
-val Loss: 0.3116 Acc: 0.9082  Time: 677.5315
-Epoch 10/25
+Iter 0/384 (Epoch 8), Train Loss = 0.085
+Iter 50/384 (Epoch 8), Train Loss = 0.000
+Iter 100/384 (Epoch 8), Train Loss = 0.042
+Iter 150/384 (Epoch 8), Train Loss = 0.005
+Iter 200/384 (Epoch 8), Train Loss = 0.005
+Iter 250/384 (Epoch 8), Train Loss = 0.004
+Iter 300/384 (Epoch 8), Train Loss = 0.078
+Iter 350/384 (Epoch 8), Train Loss = 0.139
+train Loss: 0.0360 Acc: 0.9879  Time: 661.5994
+Epoch     9: reducing learning rate of group 0 to 3.0000e-05.
+val Loss: 0.1523 Acc: 0.9515  Time: 674.6107
+Epoch 10/15
 ----------
-Iter 0 (Epoch 9), Train Loss = 0.032
-Iter 50 (Epoch 9), Train Loss = 0.104
-Iter 100 (Epoch 9), Train Loss = 0.122
-Iter 150 (Epoch 9), Train Loss = 0.358
-Iter 200 (Epoch 9), Train Loss = 0.014
-Iter 250 (Epoch 9), Train Loss = 0.081
-Iter 300 (Epoch 9), Train Loss = 0.131
-Iter 350 (Epoch 9), Train Loss = 0.008
-train Loss: 0.0547 Acc: 0.9807  Time: 739.1085
-val Loss: 0.2794 Acc: 0.9131  Time: 752.6406
-Epoch 11/25
+Iter 0/384 (Epoch 9), Train Loss = 0.003
+Iter 50/384 (Epoch 9), Train Loss = 0.001
+Iter 100/384 (Epoch 9), Train Loss = 0.015
+Iter 150/384 (Epoch 9), Train Loss = 0.003
+Iter 200/384 (Epoch 9), Train Loss = 0.002
+Iter 250/384 (Epoch 9), Train Loss = 0.000
+Iter 300/384 (Epoch 9), Train Loss = 0.103
+Iter 350/384 (Epoch 9), Train Loss = 0.005
+train Loss: 0.0115 Acc: 0.9964  Time: 736.0031
+val Loss: 0.1241 Acc: 0.9639  Time: 749.1455
+Epoch 11/15
 ----------
-Iter 0 (Epoch 10), Train Loss = 0.092
-Iter 50 (Epoch 10), Train Loss = 0.067
-Iter 100 (Epoch 10), Train Loss = 0.116
-Iter 150 (Epoch 10), Train Loss = 0.017
-Iter 200 (Epoch 10), Train Loss = 0.056
-Iter 250 (Epoch 10), Train Loss = 0.016
-Iter 300 (Epoch 10), Train Loss = 0.007
-Iter 350 (Epoch 10), Train Loss = 0.043
-train Loss: 0.0549 Acc: 0.9810  Time: 813.9029
-val Loss: 0.3359 Acc: 0.9089  Time: 827.2168
-Epoch 12/25
+Iter 0/384 (Epoch 10), Train Loss = 0.002
+Iter 50/384 (Epoch 10), Train Loss = 0.011
+Iter 100/384 (Epoch 10), Train Loss = 0.000
+Iter 150/384 (Epoch 10), Train Loss = 0.001
+Iter 200/384 (Epoch 10), Train Loss = 0.001
+Iter 250/384 (Epoch 10), Train Loss = 0.010
+Iter 300/384 (Epoch 10), Train Loss = 0.001
+Iter 350/384 (Epoch 10), Train Loss = 0.000
+train Loss: 0.0035 Acc: 0.9997  Time: 810.9688
+val Loss: 0.1276 Acc: 0.9639  Time: 824.1337
+Epoch 12/15
 ----------
-Iter 0 (Epoch 11), Train Loss = 0.015
-Iter 50 (Epoch 11), Train Loss = 0.018
-Iter 100 (Epoch 11), Train Loss = 0.064
-Iter 150 (Epoch 11), Train Loss = 0.002
-Iter 200 (Epoch 11), Train Loss = 0.019
-Iter 250 (Epoch 11), Train Loss = 0.022
-Iter 300 (Epoch 11), Train Loss = 0.097
-Iter 350 (Epoch 11), Train Loss = 0.013
-train Loss: 0.0480 Acc: 0.9834  Time: 888.0795
-Epoch    12: reducing learning rate of group 0 to 3.0000e-05.
-val Loss: 0.4284 Acc: 0.8890  Time: 901.3199
-Epoch 13/25
+Iter 0/384 (Epoch 11), Train Loss = 0.000
+Iter 50/384 (Epoch 11), Train Loss = 0.003
+Iter 100/384 (Epoch 11), Train Loss = 0.002
+Iter 150/384 (Epoch 11), Train Loss = 0.000
+Iter 200/384 (Epoch 11), Train Loss = 0.001
+Iter 250/384 (Epoch 11), Train Loss = 0.001
+Iter 300/384 (Epoch 11), Train Loss = 0.000
+Iter 350/384 (Epoch 11), Train Loss = 0.000
+train Loss: 0.0016 Acc: 1.0000  Time: 885.9949
+val Loss: 0.1329 Acc: 0.9642  Time: 899.2679
+Epoch 13/15
 ----------
-Iter 0 (Epoch 12), Train Loss = 0.207
-Iter 50 (Epoch 12), Train Loss = 0.024
-Iter 100 (Epoch 12), Train Loss = 0.003
-Iter 150 (Epoch 12), Train Loss = 0.002
-Iter 200 (Epoch 12), Train Loss = 0.026
-Iter 250 (Epoch 12), Train Loss = 0.006
-Iter 300 (Epoch 12), Train Loss = 0.001
-Iter 350 (Epoch 12), Train Loss = 0.000
-train Loss: 0.0196 Acc: 0.9941  Time: 962.2215
-val Loss: 0.2147 Acc: 0.9382  Time: 975.5206
-Epoch 14/25
+Iter 0/384 (Epoch 12), Train Loss = 0.002
+Iter 50/384 (Epoch 12), Train Loss = 0.001
+Iter 100/384 (Epoch 12), Train Loss = 0.001
+Iter 150/384 (Epoch 12), Train Loss = 0.000
+Iter 200/384 (Epoch 12), Train Loss = 0.000
+Iter 250/384 (Epoch 12), Train Loss = 0.001
+Iter 300/384 (Epoch 12), Train Loss = 0.001
+Iter 350/384 (Epoch 12), Train Loss = 0.001
+train Loss: 0.0011 Acc: 0.9999  Time: 961.6603
+val Loss: 0.1312 Acc: 0.9655  Time: 974.8273
+Epoch 14/15
 ----------
-Iter 0 (Epoch 13), Train Loss = 0.003
-Iter 50 (Epoch 13), Train Loss = 0.001
-Iter 100 (Epoch 13), Train Loss = 0.001
-Iter 150 (Epoch 13), Train Loss = 0.001
-Iter 200 (Epoch 13), Train Loss = 0.002
-Iter 250 (Epoch 13), Train Loss = 0.003
-Iter 300 (Epoch 13), Train Loss = 0.008
-Iter 350 (Epoch 13), Train Loss = 0.043
-train Loss: 0.0052 Acc: 0.9993  Time: 1037.1953
-val Loss: 0.2060 Acc: 0.9398  Time: 1050.6254
-Epoch 15/25
+Iter 0/384 (Epoch 13), Train Loss = 0.000
+Iter 50/384 (Epoch 13), Train Loss = 0.000
+Iter 100/384 (Epoch 13), Train Loss = 0.000
+Iter 150/384 (Epoch 13), Train Loss = 0.000
+Iter 200/384 (Epoch 13), Train Loss = 0.000
+Iter 250/384 (Epoch 13), Train Loss = 0.000
+Iter 300/384 (Epoch 13), Train Loss = 0.000
+Iter 350/384 (Epoch 13), Train Loss = 0.000
+train Loss: 0.0009 Acc: 1.0000  Time: 1036.8995
+val Loss: 0.1358 Acc: 0.9655  Time: 1050.0603
+Epoch 15/15
 ----------
-Iter 0 (Epoch 14), Train Loss = 0.002
-Iter 50 (Epoch 14), Train Loss = 0.000
-Iter 100 (Epoch 14), Train Loss = 0.000
-Iter 150 (Epoch 14), Train Loss = 0.001
-Iter 200 (Epoch 14), Train Loss = 0.001
-Iter 250 (Epoch 14), Train Loss = 0.001
-Iter 300 (Epoch 14), Train Loss = 0.001
-Iter 350 (Epoch 14), Train Loss = 0.002
-train Loss: 0.0033 Acc: 0.9996  Time: 1112.3934
-val Loss: 0.2056 Acc: 0.9385  Time: 1125.7169
-Epoch 16/25
-----------
-Iter 0 (Epoch 15), Train Loss = 0.000
-Iter 50 (Epoch 15), Train Loss = 0.001
-Iter 100 (Epoch 15), Train Loss = 0.002
-Iter 150 (Epoch 15), Train Loss = 0.003
-Iter 200 (Epoch 15), Train Loss = 0.001
-Iter 250 (Epoch 15), Train Loss = 0.001
-Iter 300 (Epoch 15), Train Loss = 0.001
-Iter 350 (Epoch 15), Train Loss = 0.000
-train Loss: 0.0024 Acc: 0.9998  Time: 1186.6286
-val Loss: 0.2032 Acc: 0.9395  Time: 1199.9881
-Epoch 17/25
-----------
-Iter 0 (Epoch 16), Train Loss = 0.000
-Iter 50 (Epoch 16), Train Loss = 0.000
-Iter 100 (Epoch 16), Train Loss = 0.000
-Iter 150 (Epoch 16), Train Loss = 0.012
-Iter 200 (Epoch 16), Train Loss = 0.000
-Iter 250 (Epoch 16), Train Loss = 0.000
-Iter 300 (Epoch 16), Train Loss = 0.001
-Iter 350 (Epoch 16), Train Loss = 0.000
-train Loss: 0.0020 Acc: 0.9997  Time: 1260.7479
-val Loss: 0.2048 Acc: 0.9414  Time: 1274.0740
-Epoch 18/25
-----------
-Iter 0 (Epoch 17), Train Loss = 0.000
-Iter 50 (Epoch 17), Train Loss = 0.000
-Iter 100 (Epoch 17), Train Loss = 0.001
-Iter 150 (Epoch 17), Train Loss = 0.002
-Iter 200 (Epoch 17), Train Loss = 0.001
-Iter 250 (Epoch 17), Train Loss = 0.000
-Iter 300 (Epoch 17), Train Loss = 0.001
-Iter 350 (Epoch 17), Train Loss = 0.000
-train Loss: 0.0018 Acc: 0.9998  Time: 1335.4121
-val Loss: 0.2075 Acc: 0.9395  Time: 1348.6927
-Epoch 19/25
-----------
-Iter 0 (Epoch 18), Train Loss = 0.000
-Iter 50 (Epoch 18), Train Loss = 0.002
-Iter 100 (Epoch 18), Train Loss = 0.000
-Iter 150 (Epoch 18), Train Loss = 0.000
-Iter 200 (Epoch 18), Train Loss = 0.000
-Iter 250 (Epoch 18), Train Loss = 0.001
-Iter 300 (Epoch 18), Train Loss = 0.000
-Iter 350 (Epoch 18), Train Loss = 0.000
-train Loss: 0.0015 Acc: 0.9998  Time: 1409.4477
-val Loss: 0.2072 Acc: 0.9382  Time: 1422.7817
-Epoch 20/25
-----------
-Iter 0 (Epoch 19), Train Loss = 0.002
-Iter 50 (Epoch 19), Train Loss = 0.000
-Iter 100 (Epoch 19), Train Loss = 0.000
-Iter 150 (Epoch 19), Train Loss = 0.000
-Iter 200 (Epoch 19), Train Loss = 0.001
-Iter 250 (Epoch 19), Train Loss = 0.001
-Iter 300 (Epoch 19), Train Loss = 0.000
-Iter 350 (Epoch 19), Train Loss = 0.000
-train Loss: 0.0009 Acc: 0.9999  Time: 1483.5378
-val Loss: 0.2085 Acc: 0.9424  Time: 1496.6440
-Epoch 21/25
-----------
-Iter 0 (Epoch 20), Train Loss = 0.000
-Iter 50 (Epoch 20), Train Loss = 0.001
-Iter 100 (Epoch 20), Train Loss = 0.000
-Iter 150 (Epoch 20), Train Loss = 0.000
-Iter 200 (Epoch 20), Train Loss = 0.000
-Iter 250 (Epoch 20), Train Loss = 0.003
-Iter 300 (Epoch 20), Train Loss = 0.000
-Iter 350 (Epoch 20), Train Loss = 0.000
-train Loss: 0.0008 Acc: 1.0000  Time: 1558.1130
-val Loss: 0.2145 Acc: 0.9443  Time: 1571.0032
-Epoch 22/25
-----------
-Iter 0 (Epoch 21), Train Loss = 0.000
-Iter 50 (Epoch 21), Train Loss = 0.001
-Iter 100 (Epoch 21), Train Loss = 0.001
-Iter 150 (Epoch 21), Train Loss = 0.000
-Iter 200 (Epoch 21), Train Loss = 0.000
-Iter 250 (Epoch 21), Train Loss = 0.001
-Iter 300 (Epoch 21), Train Loss = 0.000
-Iter 350 (Epoch 21), Train Loss = 0.000
-train Loss: 0.0007 Acc: 0.9999  Time: 1632.1647
-Epoch    22: reducing learning rate of group 0 to 3.0000e-06.
-val Loss: 0.2095 Acc: 0.9440  Time: 1645.1502
-Epoch 23/25
-----------
-Iter 0 (Epoch 22), Train Loss = 0.000
-Iter 50 (Epoch 22), Train Loss = 0.000
-Iter 100 (Epoch 22), Train Loss = 0.000
-Iter 150 (Epoch 22), Train Loss = 0.000
-Iter 200 (Epoch 22), Train Loss = 0.001
-Iter 250 (Epoch 22), Train Loss = 0.000
-Iter 300 (Epoch 22), Train Loss = 0.000
-Iter 350 (Epoch 22), Train Loss = 0.000
-train Loss: 0.0006 Acc: 0.9999  Time: 1705.8310
-val Loss: 0.2111 Acc: 0.9430  Time: 1719.1451
-Epoch 24/25
-----------
-Iter 0 (Epoch 23), Train Loss = 0.004
-Iter 50 (Epoch 23), Train Loss = 0.001
-Iter 100 (Epoch 23), Train Loss = 0.000
-Iter 150 (Epoch 23), Train Loss = 0.000
-Iter 200 (Epoch 23), Train Loss = 0.000
-Iter 250 (Epoch 23), Train Loss = 0.000
-Iter 300 (Epoch 23), Train Loss = 0.000
-Iter 350 (Epoch 23), Train Loss = 0.003
-train Loss: 0.0006 Acc: 0.9999  Time: 1780.3105
-val Loss: 0.2156 Acc: 0.9417  Time: 1793.0503
-Epoch 25/25
-----------
-Iter 0 (Epoch 24), Train Loss = 0.000
-Iter 50 (Epoch 24), Train Loss = 0.000
-Iter 100 (Epoch 24), Train Loss = 0.001
-Iter 150 (Epoch 24), Train Loss = 0.000
-Iter 200 (Epoch 24), Train Loss = 0.000
-Iter 250 (Epoch 24), Train Loss = 0.000
-Iter 300 (Epoch 24), Train Loss = 0.000
-Iter 350 (Epoch 24), Train Loss = 0.000
-train Loss: 0.0005 Acc: 1.0000  Time: 1853.8098
-val Loss: 0.2121 Acc: 0.9414  Time: 1866.9464
-Best model at 15 with lowest val loss 0.20315183224026137
-Training complete in 31m 7s
-Best val acc: 0.944336
+Iter 0/384 (Epoch 14), Train Loss = 0.000
+Iter 50/384 (Epoch 14), Train Loss = 0.001
+Iter 100/384 (Epoch 14), Train Loss = 0.002
+Iter 150/384 (Epoch 14), Train Loss = 0.000
+Iter 200/384 (Epoch 14), Train Loss = 0.003
+Iter 250/384 (Epoch 14), Train Loss = 0.000
+Iter 300/384 (Epoch 14), Train Loss = 0.000
+Iter 350/384 (Epoch 14), Train Loss = 0.000
+train Loss: 0.0004 Acc: 1.0000  Time: 1111.8066
+val Loss: 0.1388 Acc: 0.9665  Time: 1124.8610
+Best model at 9 with lowest val loss 0.12407989160192301
+Training complete in 18m 45s
+Best val acc: 0.966471
