@@ -1,5 +1,5 @@
 Training classifier
-{'batchsize': 64, 'labels_train': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_80.pkl', 'labels_val': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_20.pkl', 'labels_test': None, 'num_epochs': 25, 'lr': 0.0001, 'print_freq': 500, 'num_classes': 2, 'model_path': None, 'dtype': torch.float32, 'outdir': '../results/fairface/gender'} 
+{'batchsize': 64, 'labels_train': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_80.pkl', 'labels_val': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_20.pkl', 'labels_test': None, 'num_epochs': 15, 'lr': 0.0001, 'print_freq': 500, 'num_classes': 2, 'model_path': None, 'dtype': torch.float32, 'outdir': '../results/fairface/gender'} 
 
 Training on cuda:0
 	 conv1.weight
@@ -163,41 +163,44 @@ Training on cuda:0
 	 layer4.2.bn3.bias
 	 fc.weight
 	 fc.bias
-Epoch 1/25
+
+Epoch 1/15
 ----------
-Iter 0/1085 (Epoch 0), Train Loss = 0.704
-Iter 500/1085 (Epoch 0), Train Loss = 0.274
-Iter 1000/1085 (Epoch 0), Train Loss = 0.324
-train Loss: 0.2629 Acc: 0.8819  Time: 1864.6405
-val Loss: 0.2002 Acc: 0.9130  Time: 2016.9118
-Epoch 2/25
+Iter 0/802 (Epoch 0), Train Loss = 0.694
+Iter 500/802 (Epoch 0), Train Loss = 0.190
+train Loss: 0.3006 Acc: 0.8635  Time: 1388.5066
+val Loss: 0.3348 Acc: 0.8545  Time: 1500.3346
+
+Epoch 2/15
 ----------
-Iter 0/1085 (Epoch 1), Train Loss = 0.099
-Iter 500/1085 (Epoch 1), Train Loss = 0.112
-Iter 1000/1085 (Epoch 1), Train Loss = 0.151
-train Loss: 0.1624 Acc: 0.9323  Time: 3904.8903
-val Loss: 0.2029 Acc: 0.9142  Time: 4057.8308
-Epoch 3/25
+Iter 0/802 (Epoch 1), Train Loss = 0.156
+Iter 500/802 (Epoch 1), Train Loss = 0.133
+train Loss: 0.1820 Acc: 0.9245  Time: 2887.8971
+val Loss: 0.2176 Acc: 0.9112  Time: 2999.6658
+
+Epoch 3/15
 ----------
-Iter 0/1085 (Epoch 2), Train Loss = 0.151
-Iter 500/1085 (Epoch 2), Train Loss = 0.172
-Iter 1000/1085 (Epoch 2), Train Loss = 0.089
-train Loss: 0.1129 Acc: 0.9552  Time: 5939.5270
-val Loss: 0.2064 Acc: 0.9190  Time: 6127.7504
-Epoch 4/25
+Iter 0/802 (Epoch 2), Train Loss = 0.088
+Iter 500/802 (Epoch 2), Train Loss = 0.110
+train Loss: 0.1174 Acc: 0.9528  Time: 4385.9492
+val Loss: 0.2361 Acc: 0.9078  Time: 4497.8541
+
+Epoch 4/15
 ----------
-Iter 0/1085 (Epoch 3), Train Loss = 0.061
-Iter 500/1085 (Epoch 3), Train Loss = 0.084
-Iter 1000/1085 (Epoch 3), Train Loss = 0.119
-train Loss: 0.0810 Acc: 0.9685  Time: 8021.1006
-val Loss: 0.2291 Acc: 0.9183  Time: 8174.7143
-Epoch 5/25
+Iter 0/802 (Epoch 3), Train Loss = 0.071
+Iter 500/802 (Epoch 3), Train Loss = 0.086
+train Loss: 0.0814 Acc: 0.9686  Time: 5882.7046
+val Loss: 0.2776 Acc: 0.9080  Time: 5994.3531
+
+Epoch 5/15
 ----------
-Iter 0/1085 (Epoch 4), Train Loss = 0.042
-Iter 500/1085 (Epoch 4), Train Loss = 0.117
-Iter 1000/1085 (Epoch 4), Train Loss = 0.064
-train Loss: 0.0583 Acc: 0.9778  Time: 10066.6729
-val Loss: 0.2226 Acc: 0.9217  Time: 10219.9981
-Epoch 6/25
+Iter 0/802 (Epoch 4), Train Loss = 0.022
+Iter 500/802 (Epoch 4), Train Loss = 0.023
+train Loss: 0.0605 Acc: 0.9768  Time: 7379.5976
+val Loss: 0.2644 Acc: 0.9077  Time: 7491.4535
+
+Epoch 6/15
 ----------
-Iter 0/1085 (Epoch 5), Train Loss = 0.024
+Iter 0/802 (Epoch 5), Train Loss = 0.058
+Iter 500/802 (Epoch 5), Train Loss = 0.042
+slurmstepd: error: *** JOB 6091024 ON node501 CANCELLED AT 2021-04-30T13:24:12 ***
