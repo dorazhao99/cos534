@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torchvision import models
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 
 from classifier import Classifier
 from load_data import *
@@ -20,7 +20,8 @@ def main():
     parser.add_argument('--batchsize', type=int, default=170)
     parser.add_argument('--device', default=torch.device('cuda'))
     parser.add_argument('--dtype', default=torch.float32)
-    parser.add_argument('--num_classes', type=int, default=4)
+    parser.add_argument('--num_classes_gender', type=int, default=4)
+    parser.add_argument('--num_classes_race', type=int, default=2)
     parser.add_argument('--outfile', type=str)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
@@ -33,11 +34,11 @@ def main():
     # Initialize the model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     classifier_gender = Classifier(device=device, dtype=arg['dtype'],
-                                   num_classes=arg['num_classes'], 
+                                   num_classes=arg['num_classes_gender'], 
                                    input_size=256, 
                                    modelpath=arg['modelpath_gender'])
     classifier_race = Classifier(device=device, dtype=arg['dtype'],
-                                 num_classes=arg['num_classes'], 
+                                 num_classes=arg['num_classes_race'], 
                                  input_size=256, 
                                  modelpath=arg['modelpath_race'])
     
@@ -57,17 +58,21 @@ def main():
     y_true_race = y_true_race.detach().cpu().numpy()
 
     # Print out total accuracy
-    corrects = torch.sum((y_preds_gender==y_true_gender) & (y_preds_race==y_true_race))
-    acc = 100 * corrects.double() / len(testset.dataset)
+    corrects = np.sum((y_preds_gender==y_true_gender) & (y_preds_race==y_true_race))
+    acc = 100 * corrects / len(testset_race.dataset)
     print("Total accuracy: {:.2f}%".format(acc), flush=True)
 
+    # Compute confusion matrix
+    y_preds = 10. * y_preds_gender + y_preds_race
+    y_true = 10. * y_true_gender + y_true_race
+    cm = confusion_matrix(y_true, y_preds)
+    cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] 
+
+    idx = 0
     for g in humanlabels_gender:
         for r in humanlabels_race:
-            y_preds = 10. * y_preds_gender + y_preds_race
-            y_true = 10. * y_true_gender + y_true_race
-            inter_acc = accuracy_score(y_true, y_pred)
-
-            print('{:>8}, {>:16}: {:.2f}%'.format(g, r, 100. * inter_acc), flush=True)
+            print('{:<8}, {:<16}: {:.2f}%'.format(g, r, 100. * cm.diagonal()[idx]), flush=True)
+            idx += 1
 
     # Print results to file
     #output = {'pred': list(y_preds.tolist()), 'true': np.stack(y_true).tolist(), 'labels': [x for x in labels]}
