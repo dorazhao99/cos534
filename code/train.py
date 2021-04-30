@@ -21,7 +21,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
 
     running_loss = 0.0; running_corrects = 0
     for epoch in range(num_epochs):
-        print('Epoch {}/{}'.format(epoch + 1, num_epochs))
+        print('\nEpoch {}/{}'.format(epoch + 1, num_epochs))
         print('-' * 10, flush=True)
 
         # Each epoch has a training and validation phase
