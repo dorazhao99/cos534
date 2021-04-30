@@ -17,6 +17,7 @@ for i,pred in enumerate(gender_preds['pred']):
     race_gender_eval['pred'].append((pred, race_preds['pred'][i]))
 for i,pred in enumerate(gender_preds['true']):
     race_gender_eval['true'].append((pred, race_preds['true'][i]))
+race_gender_eval['labels'] = race_preds['labels']
 
 with open(arg['outfile'], 'w') as f:
     json.dump(race_gender_eval, f)
