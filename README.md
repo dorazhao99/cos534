@@ -23,6 +23,6 @@ How to process:
 
 Notes on data formatting:
 
-- Labels map full img path names to (0, 1) for ("Male, "Female") or (0, ..., 6) for ("White", "Black", "Latino\_Hispanic", "East Asian", "Southeast Asian", "Indian", "Middle Eastern").
+- Labels map full img path names to (0, 1) for ("Male, "Female") or (0, 1, 2, 3) for ("White", "Black", "Asian", "Indian"). "East Asian" and "Southeast Asian" labels were grouped together into the "Asian" category, and "Middle Eastern" and "Hispanic\_Latino" images were not processed (as per the original paper)
 
 - Train/Val split was obtained by doing an 80-20 split on the train set.
