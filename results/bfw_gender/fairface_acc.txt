@@ -162,6 +162,6 @@ Cross-evaluating classifiers on FairFace dataset
 	 layer4.2.bn3.bias
 	 fc.weight
 	 fc.bias
-Total accuracy: 24.48%
-Accuracy for Male           : 16.36%
-Accuracy for Female         : 33.10%
+Total accuracy: 75.52%
+Accuracy for Male           : 66.90%
+Accuracy for Female         : 83.64%
