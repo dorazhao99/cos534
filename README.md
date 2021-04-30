@@ -29,6 +29,8 @@ Notes on data formatting:
 
 #### Training
 
+**NOTE:** Make sure label mappings are consistent across datasets! Use the mapping in `data/gender.json` and `data/race.json`.
+
 *FairFace*
 
 Models were trained for 5 epochs, using Adam optimizer and learning rate of 1e-4.
