@@ -33,4 +33,4 @@ Notes on data formatting:
 
 *FairFace*
 
-Models were trained for 5 epochs, using Adam optimizer and learning rate of 1e-4.
+- Models were trained for 5 epochs, using Adam optimizer and learning rate of 1e-4. The model with the highest validation accuracy was saved.
