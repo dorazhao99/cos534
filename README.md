@@ -27,7 +27,7 @@ Notes on data formatting:
 
 - Train/Val split was obtained by doing an 80-20 split on the train set.
 
-#### Training
+## Training
 
 **NOTE:** Make sure label mappings are consistent across datasets! Use the mapping in `data/gender.json` and `data/race.json`.
 
