@@ -63,7 +63,7 @@ def main():
     print("Total accuracy: {:.2f}%".format(acc), flush=True)
 
     # Compute confusion matrix
-    y_preds = 10. * y_preds_gender + y_preds_race
+    y_preds = 10. * y_preds_gender + y_preds_race # Create 1-to-1 mapping
     y_true = 10. * y_true_gender + y_true_race
     cm = confusion_matrix(y_true, y_preds)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] 
