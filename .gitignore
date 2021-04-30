@@ -130,4 +130,5 @@ dmypy.json
 .pyre/
 
 # Ignore models
-results/fairface
+results/fairface/gender/model*
+results/fairface/race/model*
