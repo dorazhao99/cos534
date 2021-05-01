@@ -42,13 +42,18 @@ for z in tqdm(os.listdir(arg['indir'])):
             for rect in rects:
                 # extract the ROI of the *original* face, then align the face
                 # using facial landmarks
-                (x, y, w, h) = rect_to_bb(rect)
-                faceOrig = imutils.resize(image[y:y + h, x:x + w], width=256)
-                faceAligned = fa.align(image, gray, rect)
-                avg_l = get_avg_lightness(faceAligned)
-                if avg_l > arg['threshold']:
-                    # print('Saved {}'.format(img))
-                    cv2.imwrite('{}/{}/{}'.format(arg['outdir'], z, img), faceAligned)
-                else:
-                    print('Too dark: {:.2f}'.format(avg_l))
-                break
+                try:
+                    (x, y, w, h) = rect_to_bb(rect)
+                    print(x, y, w, h, image.shape)
+                    faceOrig = imutils.resize(image[y:y + h, x:x + w], width=256)
+                    faceAligned = fa.align(image, gray, rect)
+                    avg_l = get_avg_lightness(faceAligned)
+                    if avg_l > arg['threshold']:
+                        # print('Saved {}'.format(img))
+                        cv2.imwrite('{}/{}/{}'.format(arg['outdir'], z, img), faceAligned)
+                    else:
+                        print('Too dark: {:.2f}'.format(avg_l))
+                    break
+                except Exception:
+                    print(x, y, w, h)
+                    pass
