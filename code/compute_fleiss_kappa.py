@@ -29,7 +29,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--evals', nargs='+', type=str, default=[])
 parser.add_argument('--gender_to_idx', type=str, required=True)
 parser.add_argument('--race_to_idx', type=str, required=True)
-parser.add_argument('--outfile', type=str, default='fleiss_kappas.json')
 arg = vars(parser.parse_args())
 assert len(arg['evals']) > 0
 print(arg, '\n', flush=True)
