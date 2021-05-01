@@ -11,9 +11,9 @@ How to process:
 
 1. Download the appropriate .zip file from https://ai.facebook.com/datasets/casual-conversations-dataset/ and rename to something like `CC_part_1_1.zip`.
 
-2. Run `./get_zip_files.sh <FILENAME>`.
+2. Run `./get_zip_files.sh <ZIP_FILENAME> <OUT_TXT_NAME>`. Here, `ZIP_FILENAME` is the name of the downloaded .zip file, and `OUT_TXT_NAME` is the name of the output .txt file where the .zip filenames are printed to.
 
-3. Run `./process_videos.sh <FILENAME>`. If you only want to process some of the videos, set `lim` to the line in the .txt file that you want to stop at and uncomment lines 14-16.
+3. Run `./process_videos.sh <ZIP_FILENAME> <OUT_TXT_NAME>`. Use the same names as above.
 
 *FairFace*
 

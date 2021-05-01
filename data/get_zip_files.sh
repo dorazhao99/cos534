@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-zip_name='CC_part_19_1.zip'
-filename='CC_part_19_1.txt'
-unzip -l $zip_name > $filename
+# $1 is the name of the .zip file
+# $2 is the name of the output .txt file
 
-python process_zip.py $filename
+unzip -l $1 > $2
+
+python process_zip.py $2
 
 echo ""
 echo "All done!"
