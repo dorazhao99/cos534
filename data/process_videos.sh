@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 
-filename='CC_part_19_1.txt'
-n=1
-lim=20
+# $1 is the name of the .zip file
+# $2 is the name of the .txt file
 
 echo "Extracting frames..."
 while read line; do
   echo ""
   echo "Unzipping line $n: $line"
-  unzip CC_part_19_1.zip $line
+  unzip $1 $line
   python extract_frame.py --filepath $line
   rm -r $line
-#   if [[ $n -ge $lim ]]; then
-#     break
-#   fi
   ((n++))
-done < $filename
+done < $2
 
 echo ""
 echo "Processing frames..."
