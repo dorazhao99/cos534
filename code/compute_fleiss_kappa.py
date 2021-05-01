@@ -23,7 +23,7 @@ def compute_fleiss_kappa(pred, true, group, num_categs):
         if true[i] == group:
             fleiss_inputs[idx][pred] += 1
             idx += 1
-    return fleiss_kappas(fleiss_inputs)
+    return fleiss_kappa(fleiss_inputs)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--evals', nargs='+', type=str, default=[])
