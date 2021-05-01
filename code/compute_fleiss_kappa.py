@@ -18,7 +18,7 @@ def compute_fleiss_kappa(pred, true, group, num_categs):
     """
 
     num_subjects = true.count(group)
-    fleiss_inputs = np.zeros((num_subjects, num_categs)
+    fleiss_inputs = np.zeros((num_subjects, num_categs))
     idx = 0
     for i,pred in enumerate(pred):
         if true[i] == group:
@@ -52,14 +52,14 @@ gender_pred = [p for p,_ in eval['pred']]
 gender_true = [t for t,_ in eval['true']]
 for g in gender_to_idx:
     fleiss_kappa_score = compute_fleiss_kappa(gender_pred, gender_true, g, len(gender_to_idx))
-    print('{} Fleiss-K score: {:.2f}'.format(g, fleiss_kappa_score)
+    print('{} Fleiss-K score: {:.2f}'.format(g, fleiss_kappa_score))
 
 # Compute race fleiss kappas
 race_pred = [p for _,p in eval['pred']]
 race_true = [t for _,t in eval['true']]
 for r in race_to_idx:
     fleiss_kappa_score = compute_fleiss_kappa(race_pred, race_true, r, len(race_to_idx))
-    print('{} Fleiss-K score: {:.2f}'.format(r, fleiss_kappa_score)
+    print('{} Fleiss-K score: {:.2f}'.format(r, fleiss_kappa_score))
 
 # Compute intersectional fleiss kappas
 inter_pred = [10 * gp + rp for gp,rp in eval['pred']]
@@ -68,4 +68,4 @@ for g in gender_to_idx:
     for r in race_to_idx:
         inter_idx = 10 * g + r
         fleiss_kappa_score = compute_fleiss_kappa(inter_pred, inter_true, inter_idx, len(race_to_idx) * len(gender_to_idx))
-        print('{}, {} Fleiss-K score: {:.2f}'.format(g, r, fleiss_kappa_score)
+        print('{}, {} Fleiss-K score: {:.2f}'.format(g, r, fleiss_kappa_score))
