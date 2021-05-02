@@ -7,7 +7,9 @@ Final Project for COS 534: Fairness in Machine Learning
 
 *Casual Conversations*
 
-Make sure you have this file in the `data/` folder: https://github.com/tzutalin/dlib-android/blob/master/data/shape_predictor_68_face_landmarks.dat
+Make sure you have this file in the `data/` folder: 
+
+https://github.com/tzutalin/dlib-android/blob/master/data/shape_predictor_68_face_landmarks.dat
 
 How to process:
 
