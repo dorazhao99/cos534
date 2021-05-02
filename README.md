@@ -7,6 +7,8 @@ Final Project for COS 534: Fairness in Machine Learning
 
 *Casual Conversations*
 
+Make sure you have this file in the `data/` folder: https://github.com/tzutalin/dlib-android/blob/master/data/shape_predictor_68_face_landmarks.dat
+
 How to process:
 
 1. Download the appropriate .zip file from https://ai.facebook.com/datasets/casual-conversations-dataset/ and rename to something like `CC_part_1_1.zip`.
