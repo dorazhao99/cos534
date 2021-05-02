@@ -30,3 +30,16 @@ Notes on data formatting:
 *FairFace*
 
 - Models were trained for 5 epochs, using Adam optimizer and learning rate of 1e-4. The model with the highest validation accuracy was saved.
+
+## Evaluation
+
+- `evaluate.py`: Used to evaluate a model trained on one dataset on any other test dataset; evaluates only gender or only race.
+- `inter_evaluate.py`: Used to evaluate a model trained on one dataset on any other test dataset; does gender-race pairs.
+
+## Analysis
+
+*Computing Fleiss Kappa scores*
+
+The method `fleiss_kappa` from `statsmodel` is used. The Fleiss-Kappa score is evaluated for each group, e.g. 'Black', 'Female', 'Asian-Male', etc. The input consists of a `num_subjects * num_categories` table, where row r of this table corresponds to a particular input image with ground truth label as the group being evaluated. 
+
+Each column corresponds to a possible label (e.g. if we are evaluating 'Male', then there are two possible labels, 'Male' and 'Female'). To fill in the table, tally up all predictions assigned by each dataset model on each example. Thus the sum over each row should be identical, and should equal the number of models tested.
