@@ -1,18 +1,18 @@
 #!/bin/bash
-#SBATCH --job-name=train_534
-#SBATCH --output=bfw_total.txt
+#SBATCH --job-name=train_534_laofiw
+#SBATCH --output=laofiw_total.txt
 #
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=48:00:00
 #
 #SBATCH --mail-type=all
-#SBATCH --mail-user=dorothyz@princeton.edu
+#SBATCH --mail-user=czye@princeton.edu
 
 python train.py \
---labels_train ../data/$1/bfw_$2_train.pkl \
---labels_val ../data/$1/bfw_$2_val.pkl \
+--labels_train ../data/LAOFIW/train.pkl \
+--labels_val ../data/LAOFIW/val.pkl \
 --num_epochs 15 \
---num_classes 2 \
---lr 0.0003 \
---outdir ../results/$1_$2
+--num_classes 4 \
+--outdir ../results/LAOFIW/
+
