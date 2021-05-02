@@ -1,5 +1,5 @@
 Evaluating intersectional classifiers
-{'modelpath_gender': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/gender/model_best.pth', 'modelpath_race': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/model_best.pth', 'humanlabels_gender': '/n/fs/visualai-scr/sharonz/fairface/gender_to_idx.json', 'humanlabels_race': '/n/fs/visualai-scr/sharonz/fairface/race_to_idx.json', 'labels_gender': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'labels_race': '/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes_gender': 2, 'num_classes_race': 4, 'outfile': None} 
+{'modelpath_gender': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/gender/model_best.pth', 'modelpath_race': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/model_best.pth', 'humanlabels_gender': '/n/fs/visualai-scr/sharonz/cos534/data/gender.json', 'humanlabels_race': '/n/fs/visualai-scr/sharonz/cos534/data/race.json', 'labels_gender': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'labels_race': '/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes_gender': 2, 'num_classes_race': 4, 'outfile': None} 
 
 	 conv1.weight
 	 bn1.weight
@@ -324,11 +324,11 @@ Evaluating intersectional classifiers
 	 fc.weight
 	 fc.bias
 Total accuracy: 77.94%
-Male    , White           : 82.35%
-Male    , Black           : 66.05%
-Male    , East Asian      : 86.85%
-Male    , South Asian     : 75.62%
-Female  , White           : 83.51%
-Female  , Black           : 66.71%
-Female  , East Asian      : 81.55%
-Female  , South Asian     : 65.74%
+F       , W               : 82.35%
+F       , B               : 66.05%
+F       , A               : 86.85%
+F       , I               : 75.62%
+M       , W               : 83.51%
+M       , B               : 66.71%
+M       , A               : 81.55%
+M       , I               : 65.74%
