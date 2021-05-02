@@ -131,4 +131,10 @@ dmypy.json
 
 # Ignore models
 results/fairface/gender/model*
+results/fairface/gender_1/model*
+results/fairface/gender_2/model*
+results/fairface/gender_3/model*
 results/fairface/race/model*
+results/fairface/race_1/model*
+results/fairface/race_2/model*
+results/fairface/race_3/model*
