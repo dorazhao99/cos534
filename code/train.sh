@@ -9,9 +9,13 @@
 #SBATCH --mail-type=all
 #SBATCH --mail-user=czye@princeton.edu
 
+source /home/dorothyz/.bashrc
+
+conda activate 534
+
 python train.py \
---labels_train ../data/LAOFIW/train.pkl \
---labels_val ../data/LAOFIW/val.pkl \
+--labels_train ../data/LAOFIW/laofiw_train.pkl \
+--labels_val ../data/LAOFIW/laofiw_val.pkl \
 --num_epochs 15 \
 --num_classes 4 \
 --outdir ../results/LAOFIW/
