@@ -39,12 +39,12 @@ for z in tqdm(os.listdir(arg['indir'])):
             image = imutils.resize(image, width=1000)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             rects = detector(gray, 2)
+            skipped_frames = 0
             for rect in rects:
                 # extract the ROI of the *original* face, then align the face
                 # using facial landmarks
                 try:
                     (x, y, w, h) = rect_to_bb(rect)
-                    print(x, y, w, h, image.shape)
                     faceOrig = imutils.resize(image[y:y + h, x:x + w], width=256)
                     faceAligned = fa.align(image, gray, rect)
                     avg_l = get_avg_lightness(faceAligned)
@@ -55,5 +55,7 @@ for z in tqdm(os.listdir(arg['indir'])):
                         print('Too dark: {:.2f}'.format(avg_l))
                     break
                 except Exception:
-                    print(x, y, w, h)
+                    skipped_frames += 1
                     pass
+                
+print('Number of skipped frames:', skipped_frames)
