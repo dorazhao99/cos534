@@ -1,5 +1,5 @@
 Evaluating intersectional classifiers on FairFace dataset
-{'modelpath_gender': '/n/fs/visualai-scr/sharonz/cos534/results/bfw_gender/model_best.pth', 'modelpath_race': '/n/fs/visualai-scr/sharonz/cos534/results/bfw_race/model_best.pth', 'humanlabels_gender': '/n/fs/visualai-scr/sharonz/fairface/gender_to_idx.json', 'humanlabels_race': '/n/fs/visualai-scr/sharonz/fairface/race_to_idx.json', 'labels_gender': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'labels_race': '/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes_gender': 2, 'num_classes_race': 4, 'outfile': None} 
+{'modelpath_gender': '/n/fs/visualai-scr/sharonz/cos534/results/bfw/gender/model_best.pth', 'modelpath_race': '/n/fs/visualai-scr/sharonz/cos534/results/bfw/race/model_best.pth', 'humanlabels_gender': '/n/fs/visualai-scr/sharonz/cos534/data/gender.json', 'humanlabels_race': '/n/fs/visualai-scr/sharonz/cos534/data/race.json', 'labels_gender': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'labels_race': '/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes_gender': 2, 'num_classes_race': 4, 'outfile': None} 
 
 	 conv1.weight
 	 bn1.weight
@@ -324,11 +324,11 @@ Evaluating intersectional classifiers on FairFace dataset
 	 fc.weight
 	 fc.bias
 Total accuracy: 46.81%
-Male    , White           : 26.38%
-Male    , Black           : 38.97%
-Male    , East Asian      : 53.27%
-Male    , South Asian     : 52.69%
-Female  , White           : 29.68%
-Female  , Black           : 46.81%
-Female  , East Asian      : 61.31%
-Female  , South Asian     : 58.83%
+F       , W               : 26.38%
+F       , B               : 38.97%
+F       , A               : 53.27%
+F       , I               : 52.69%
+M       , W               : 29.68%
+M       , B               : 46.81%
+M       , A               : 61.31%
+M       , I               : 58.83%

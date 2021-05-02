@@ -1,5 +1,5 @@
-Evaluating classifier
-{'humanlabels': '/n/fs/visualai-scr/sharonz/fairface/race_to_idx.json', 'modelpath': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/model_best.pth', 'labels_test': '/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 4, 'outfile': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/acc.txt'} 
+Cross-evaluating classifiers on FairFace dataset
+{'humanlabels': '/n/fs/visualai-scr/sharonz/cos534/data/gender.json', 'modelpath': '/n/fs/visualai-scr/sharonz/cos534/results/bfw/gender/model_best.pth', 'labels_test': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 2, 'outfile': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/gender/bfw_eval.json'} 
 
 	 conv1.weight
 	 bn1.weight
@@ -162,8 +162,6 @@ Evaluating classifier
 	 layer4.2.bn3.bias
 	 fc.weight
 	 fc.bias
-Total accuracy: 85.89%
-Accuracy for White          : 89.59%
-Accuracy for Black          : 78.60%
-Accuracy for East Asian     : 91.87%
-Accuracy for South Asian    : 76.58%
+Total accuracy: 75.52%
+Accuracy for F              : 66.90%
+Accuracy for M              : 83.64%
