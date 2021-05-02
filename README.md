@@ -27,6 +27,8 @@ Notes on data formatting:
 
 **NOTE:** Make sure label mappings are consistent across datasets! Use the mapping in `data/gender.json` and `data/race.json`.
 
+All pre-trained models are backed up on the shared Google drive. Try not to add too many models to the GitHub repo because they take up a lot of storage.
+
 *FairFace*
 
 - Models were trained for 5 epochs, using Adam optimizer and learning rate of 1e-4. The model with the highest validation accuracy was saved.
