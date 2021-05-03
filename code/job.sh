@@ -14,17 +14,17 @@
 
 source /n/fs/interp-scr/sharonz/interp/bin/activate
 
-JOB=3
+JOB=6
 
 if [[ $JOB == 0 ]]
 then
   echo Training classifier
 
-  TYPE="race"
+  TYPE="gender"
   DATASET="fairface"
   LABELS_TRAIN="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_train_80.pkl"
   LABELS_VAL="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_train_20.pkl"
-  NUM_EPOCHS=2
+  NUM_EPOCHS=3
   if [[ $TYPE == "gender" ]]
   then
     NUM_CLASSES=2
@@ -35,7 +35,7 @@ then
   BATCHSIZE=64
   PRINT_FREQ=500
   SAVE_FREQ=1
-  OUTDIR="../results/${DATASET}/${TYPE}_2epochs"
+  OUTDIR="../results/${DATASET}/${TYPE}_23epochs"
 
   python train.py \
     --labels_train $LABELS_TRAIN --labels_val $LABELS_VAL \
@@ -48,7 +48,7 @@ then
   echo Evaluating classifier
 
   TYPE="race"
-  MODELPATH="/n/fs/visualai-scr/sharonz/cos534/results/fairface/${TYPE}/model_best.pth"
+  MODELPATH="/n/fs/visualai-scr/sharonz/cos534/results/fairface/${TYPE}_23epochs/model_2.pth"
   OUTFILE="/n/fs/visualai-scr/sharonz/cos534/results/fairface/${TYPE}/fairface_eval.json"
   LABELS_TEST="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_val.pkl"
   HUMANLABELS="/n/fs/visualai-scr/sharonz/cos534/data/${TYPE}.json"
@@ -159,8 +159,7 @@ then
   GENDER_TO_IDX="${FOLDER}/data/gender.json"
 
   python compute_fleiss_kappa.py --evals ${EVALS[*]} \
-    --race_to_idx $RACE_TO_IDX 
-    #--gender_to_idx $GENDER_TO_IDX
+    --race_to_idx $RACE_TO_IDX
 fi
 
 if [[ $JOB == 7 ]]
@@ -208,9 +207,9 @@ if [[ $JOB == 9 ]]
 then
   echo Evaluating three-way ensembles on FairFace
 
-  TYPE="gender"
-  SPLIT="1"
-  DATASET="bfw"
+  TYPE="race"
+  SPLIT="3"
+  DATASET="laofiw"
   FOLDER="/n/fs/visualai-scr/sharonz/cos534"
   MODELPATH="/n/fs/visualai-scr/sharonz/other/${DATASET}/${TYPE}_${SPLIT}/model_best.pth"
   OUTFILE="${FOLDER}/results/fairface/${TYPE}_${SPLIT}/${DATASET}_eval.json"
@@ -246,9 +245,9 @@ fi
 
 if [[ $JOB == 11 ]]
 then
-  echo Compute Fleiss Kappa scores for Table 2
+  echo Compute intersectional Fleiss Kappa scores for Table 2
 
-  DATASET_1="bfw"
+  DATASET_1="laofiw"
   DATASET_2="fairface"
 
   FOLDER="/n/fs/visualai-scr/sharonz/cos534"
@@ -258,5 +257,24 @@ then
   RACE_TO_IDX="${FOLDER}/data/race.json"
   GENDER_TO_IDX="${FOLDER}/data/gender.json"
 
-  python compute_fleiss_kappa.py --evals ${EVALS[*]} --race_to_idx $RACE_TO_IDX --gender_to_idx $GENDER_TO_IDX
+  python compute_fleiss_kappa.py --evals ${EVALS[*]} \
+    --race_to_idx $RACE_TO_IDX \
+    --gender_to_idx $GENDER_TO_IDX
+fi
+
+if [[ $JOB == 12 ]]
+then
+  echo Compute race or gender Fleiss Kappa scores for Table 2
+
+  DATASET_1="laofiw"
+  DATASET_2="fairface"
+  TYPE="race"
+
+  FOLDER="/n/fs/visualai-scr/sharonz/cos534"
+  EVALS=("${FOLDER}/results/${DATASET_2}/${TYPE}_1/${DATASET_1}_eval.json" \
+         "${FOLDER}/results/${DATASET_2}/${TYPE}_2/${DATASET_1}_eval.json" \
+         "${FOLDER}/results/${DATASET_2}/${TYPE}_3/${DATASET_1}_eval.json")
+  X_TO_IDX="${FOLDER}/data/${TYPE}.json"
+
+  python compute_fleiss_kappa.py --evals ${EVALS[*]} --race_to_idx $X_TO_IDX 
 fi
