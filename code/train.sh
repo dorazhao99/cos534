@@ -1,8 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=train_534
 #SBATCH --output=bfw_1_g.txt
-#SBATCH --job-name=train_3_laofiw
-#SBATCH --output=laofiw_3.txt
 #
 ##SBATCH --gres=gpu:0
 #SBATCH --mem=64G
@@ -16,6 +14,7 @@ source /home/dorothyz/.bashrc
 conda activate 534
 
 python train.py \
+<<<<<<< HEAD
 --labels_train $1 \
 --labels_val $2 \
 --num_epochs 10 \
