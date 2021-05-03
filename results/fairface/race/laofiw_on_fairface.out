@@ -162,8 +162,8 @@ Cross-evaluating classifiers on FairFace dataset
 	 layer4.2.bn3.bias
 	 fc.weight
 	 fc.bias
-Total accuracy: 43.83%
-Accuracy for W              : 30.36%
-Accuracy for B              : 56.43%
-Accuracy for A              : 40.61%
-Accuracy for I              : 55.74%
+Total accuracy: 33.81%
+Accuracy for W              : 54.77%
+Accuracy for B              : 59.77%
+Accuracy for A              : 4.86%
+Accuracy for I              : 34.96%
