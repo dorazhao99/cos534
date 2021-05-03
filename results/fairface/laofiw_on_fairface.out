@@ -1,0 +1,7 @@
+Compute Fleiss Kappa scores for Table 3
+{'evals': ['/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/fairface_eval.json', '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/bfw_eval.json', '/n/fs/visualai-scr/sharonz/cos534/results/fairface/race/laofiw_eval.json'], 'gender_to_idx': None, 'race_to_idx': '/n/fs/visualai-scr/sharonz/cos534/data/race.json'} 
+
+W Fleiss-K score: -0.00
+B Fleiss-K score: 0.16
+A Fleiss-K score: 0.03
+I Fleiss-K score: 0.12

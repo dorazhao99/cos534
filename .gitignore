@@ -129,6 +129,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Ignore models
+# Trained models
 results/fairface/gender/model*
+results/fairface/gender_1/model*
+results/fairface/gender_2/model*
+results/fairface/gender_3/model*
 results/fairface/race/model*
+*.pth
+results/fairface/race_1/model*
+results/fairface/race_2/model*
+results/fairface/race_3/model*
+results/bfw/gender/model*
+results/bfw/race/model*
+
+results/LAOFIW/laofiw_aliggned/model*
+
+# Face landmarks .dat file
+data/shape_predictor_68_face_landmarks.dat

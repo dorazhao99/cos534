@@ -1,0 +1,303 @@
+{'batchsize': 32, 'labels_train': '../data/LAOFIW/laofiw_train.pkl', 'labels_val': '../data/LAOFIW/laofiw_val.pkl', 'labels_test': None, 'num_epochs': 15, 'lr': 0.001, 'print_freq': 50, 'num_classes': 4, 'model_path': None, 'dtype': torch.float32, 'outdir': '../results/laofiw_aligned/'} 
+
+Training on cuda:0
+	 conv1.weight
+	 bn1.weight
+	 bn1.bias
+	 layer1.0.conv1.weight
+	 layer1.0.bn1.weight
+	 layer1.0.bn1.bias
+	 layer1.0.conv2.weight
+	 layer1.0.bn2.weight
+	 layer1.0.bn2.bias
+	 layer1.0.conv3.weight
+	 layer1.0.bn3.weight
+	 layer1.0.bn3.bias
+	 layer1.0.downsample.0.weight
+	 layer1.0.downsample.1.weight
+	 layer1.0.downsample.1.bias
+	 layer1.1.conv1.weight
+	 layer1.1.bn1.weight
+	 layer1.1.bn1.bias
+	 layer1.1.conv2.weight
+	 layer1.1.bn2.weight
+	 layer1.1.bn2.bias
+	 layer1.1.conv3.weight
+	 layer1.1.bn3.weight
+	 layer1.1.bn3.bias
+	 layer1.2.conv1.weight
+	 layer1.2.bn1.weight
+	 layer1.2.bn1.bias
+	 layer1.2.conv2.weight
+	 layer1.2.bn2.weight
+	 layer1.2.bn2.bias
+	 layer1.2.conv3.weight
+	 layer1.2.bn3.weight
+	 layer1.2.bn3.bias
+	 layer2.0.conv1.weight
+	 layer2.0.bn1.weight
+	 layer2.0.bn1.bias
+	 layer2.0.conv2.weight
+	 layer2.0.bn2.weight
+	 layer2.0.bn2.bias
+	 layer2.0.conv3.weight
+	 layer2.0.bn3.weight
+	 layer2.0.bn3.bias
+	 layer2.0.downsample.0.weight
+	 layer2.0.downsample.1.weight
+	 layer2.0.downsample.1.bias
+	 layer2.1.conv1.weight
+	 layer2.1.bn1.weight
+	 layer2.1.bn1.bias
+	 layer2.1.conv2.weight
+	 layer2.1.bn2.weight
+	 layer2.1.bn2.bias
+	 layer2.1.conv3.weight
+	 layer2.1.bn3.weight
+	 layer2.1.bn3.bias
+	 layer2.2.conv1.weight
+	 layer2.2.bn1.weight
+	 layer2.2.bn1.bias
+	 layer2.2.conv2.weight
+	 layer2.2.bn2.weight
+	 layer2.2.bn2.bias
+	 layer2.2.conv3.weight
+	 layer2.2.bn3.weight
+	 layer2.2.bn3.bias
+	 layer2.3.conv1.weight
+	 layer2.3.bn1.weight
+	 layer2.3.bn1.bias
+	 layer2.3.conv2.weight
+	 layer2.3.bn2.weight
+	 layer2.3.bn2.bias
+	 layer2.3.conv3.weight
+	 layer2.3.bn3.weight
+	 layer2.3.bn3.bias
+	 layer3.0.conv1.weight
+	 layer3.0.bn1.weight
+	 layer3.0.bn1.bias
+	 layer3.0.conv2.weight
+	 layer3.0.bn2.weight
+	 layer3.0.bn2.bias
+	 layer3.0.conv3.weight
+	 layer3.0.bn3.weight
+	 layer3.0.bn3.bias
+	 layer3.0.downsample.0.weight
+	 layer3.0.downsample.1.weight
+	 layer3.0.downsample.1.bias
+	 layer3.1.conv1.weight
+	 layer3.1.bn1.weight
+	 layer3.1.bn1.bias
+	 layer3.1.conv2.weight
+	 layer3.1.bn2.weight
+	 layer3.1.bn2.bias
+	 layer3.1.conv3.weight
+	 layer3.1.bn3.weight
+	 layer3.1.bn3.bias
+	 layer3.2.conv1.weight
+	 layer3.2.bn1.weight
+	 layer3.2.bn1.bias
+	 layer3.2.conv2.weight
+	 layer3.2.bn2.weight
+	 layer3.2.bn2.bias
+	 layer3.2.conv3.weight
+	 layer3.2.bn3.weight
+	 layer3.2.bn3.bias
+	 layer3.3.conv1.weight
+	 layer3.3.bn1.weight
+	 layer3.3.bn1.bias
+	 layer3.3.conv2.weight
+	 layer3.3.bn2.weight
+	 layer3.3.bn2.bias
+	 layer3.3.conv3.weight
+	 layer3.3.bn3.weight
+	 layer3.3.bn3.bias
+	 layer3.4.conv1.weight
+	 layer3.4.bn1.weight
+	 layer3.4.bn1.bias
+	 layer3.4.conv2.weight
+	 layer3.4.bn2.weight
+	 layer3.4.bn2.bias
+	 layer3.4.conv3.weight
+	 layer3.4.bn3.weight
+	 layer3.4.bn3.bias
+	 layer3.5.conv1.weight
+	 layer3.5.bn1.weight
+	 layer3.5.bn1.bias
+	 layer3.5.conv2.weight
+	 layer3.5.bn2.weight
+	 layer3.5.bn2.bias
+	 layer3.5.conv3.weight
+	 layer3.5.bn3.weight
+	 layer3.5.bn3.bias
+	 layer4.0.conv1.weight
+	 layer4.0.bn1.weight
+	 layer4.0.bn1.bias
+	 layer4.0.conv2.weight
+	 layer4.0.bn2.weight
+	 layer4.0.bn2.bias
+	 layer4.0.conv3.weight
+	 layer4.0.bn3.weight
+	 layer4.0.bn3.bias
+	 layer4.0.downsample.0.weight
+	 layer4.0.downsample.1.weight
+	 layer4.0.downsample.1.bias
+	 layer4.1.conv1.weight
+	 layer4.1.bn1.weight
+	 layer4.1.bn1.bias
+	 layer4.1.conv2.weight
+	 layer4.1.bn2.weight
+	 layer4.1.bn2.bias
+	 layer4.1.conv3.weight
+	 layer4.1.bn3.weight
+	 layer4.1.bn3.bias
+	 layer4.2.conv1.weight
+	 layer4.2.bn1.weight
+	 layer4.2.bn1.bias
+	 layer4.2.conv2.weight
+	 layer4.2.bn2.weight
+	 layer4.2.bn2.bias
+	 layer4.2.conv3.weight
+	 layer4.2.bn3.weight
+	 layer4.2.bn3.bias
+	 fc.weight
+	 fc.bias
+
+Epoch 1/15
+----------
+Iter 0/181 (Epoch 0), Train Loss = 1.652
+Iter 50/181 (Epoch 0), Train Loss = 0.812
+Iter 100/181 (Epoch 0), Train Loss = 0.887
+Iter 150/181 (Epoch 0), Train Loss = 0.958
+train Loss: 0.9894 Acc: 0.5977  Time: 33.3766
+val Loss: 1.2138 Acc: 0.5479  Time: 40.6141
+
+Epoch 2/15
+----------
+Iter 0/181 (Epoch 1), Train Loss = 0.699
+Iter 50/181 (Epoch 1), Train Loss = 0.930
+Iter 100/181 (Epoch 1), Train Loss = 0.733
+Iter 150/181 (Epoch 1), Train Loss = 0.618
+train Loss: 0.8036 Acc: 0.6937  Time: 73.5841
+val Loss: 0.9857 Acc: 0.6251  Time: 80.8281
+
+Epoch 3/15
+----------
+Iter 0/181 (Epoch 2), Train Loss = 0.768
+Iter 50/181 (Epoch 2), Train Loss = 0.943
+Iter 100/181 (Epoch 2), Train Loss = 0.483
+Iter 150/181 (Epoch 2), Train Loss = 1.108
+train Loss: 0.6915 Acc: 0.7359  Time: 113.7846
+val Loss: 0.7637 Acc: 0.7161  Time: 120.6515
+
+Epoch 4/15
+----------
+Iter 0/181 (Epoch 3), Train Loss = 0.662
+Iter 50/181 (Epoch 3), Train Loss = 0.561
+Iter 100/181 (Epoch 3), Train Loss = 0.606
+Iter 150/181 (Epoch 3), Train Loss = 0.829
+train Loss: 0.6025 Acc: 0.7883  Time: 153.4737
+val Loss: 1.2417 Acc: 0.6141  Time: 160.6292
+
+Epoch 5/15
+----------
+Iter 0/181 (Epoch 4), Train Loss = 0.468
+Iter 50/181 (Epoch 4), Train Loss = 0.593
+Iter 100/181 (Epoch 4), Train Loss = 0.354
+Iter 150/181 (Epoch 4), Train Loss = 0.541
+train Loss: 0.5629 Acc: 0.8002  Time: 192.3821
+val Loss: 0.7142 Acc: 0.7443  Time: 199.6290
+
+Epoch 6/15
+----------
+Iter 0/181 (Epoch 5), Train Loss = 0.546
+Iter 50/181 (Epoch 5), Train Loss = 0.451
+Iter 100/181 (Epoch 5), Train Loss = 0.465
+Iter 150/181 (Epoch 5), Train Loss = 0.478
+train Loss: 0.5273 Acc: 0.8122  Time: 232.4645
+val Loss: 0.8867 Acc: 0.7112  Time: 239.7825
+
+Epoch 7/15
+----------
+Iter 0/181 (Epoch 6), Train Loss = 0.539
+Iter 50/181 (Epoch 6), Train Loss = 0.608
+Iter 100/181 (Epoch 6), Train Loss = 0.599
+Iter 150/181 (Epoch 6), Train Loss = 0.623
+train Loss: 0.6130 Acc: 0.7742  Time: 271.5130
+val Loss: 0.8219 Acc: 0.7216  Time: 278.2264
+
+Epoch 8/15
+----------
+Iter 0/181 (Epoch 7), Train Loss = 0.302
+Iter 50/181 (Epoch 7), Train Loss = 0.592
+Iter 100/181 (Epoch 7), Train Loss = 0.276
+Iter 150/181 (Epoch 7), Train Loss = 0.358
+train Loss: 0.4166 Acc: 0.8539  Time: 310.2430
+val Loss: 0.7892 Acc: 0.7278  Time: 317.2618
+
+Epoch 9/15
+----------
+Iter 0/181 (Epoch 8), Train Loss = 0.339
+Iter 50/181 (Epoch 8), Train Loss = 0.284
+Iter 100/181 (Epoch 8), Train Loss = 0.361
+Iter 150/181 (Epoch 8), Train Loss = 0.357
+train Loss: 0.3563 Acc: 0.8747  Time: 348.9278
+val Loss: 0.7206 Acc: 0.7615  Time: 356.1230
+
+Epoch 10/15
+----------
+Iter 0/181 (Epoch 9), Train Loss = 0.332
+Iter 50/181 (Epoch 9), Train Loss = 0.202
+Iter 100/181 (Epoch 9), Train Loss = 0.267
+Iter 150/181 (Epoch 9), Train Loss = 0.182
+train Loss: 0.3125 Acc: 0.8927  Time: 389.2342
+val Loss: 0.8257 Acc: 0.7553  Time: 396.4989
+
+Epoch 11/15
+----------
+Iter 0/181 (Epoch 10), Train Loss = 0.399
+Iter 50/181 (Epoch 10), Train Loss = 0.193
+Iter 100/181 (Epoch 10), Train Loss = 0.080
+Iter 150/181 (Epoch 10), Train Loss = 0.153
+train Loss: 0.2994 Acc: 0.8931  Time: 428.5924
+Epoch    11: reducing learning rate of group 0 to 1.0000e-04.
+val Loss: 1.2705 Acc: 0.7016  Time: 435.2508
+
+Epoch 12/15
+----------
+Iter 0/181 (Epoch 11), Train Loss = 0.174
+Iter 50/181 (Epoch 11), Train Loss = 0.140
+Iter 100/181 (Epoch 11), Train Loss = 0.057
+Iter 150/181 (Epoch 11), Train Loss = 0.086
+train Loss: 0.1278 Acc: 0.9608  Time: 467.2051
+val Loss: 0.7333 Acc: 0.7870  Time: 474.2846
+
+Epoch 13/15
+----------
+Iter 0/181 (Epoch 12), Train Loss = 0.017
+Iter 50/181 (Epoch 12), Train Loss = 0.044
+Iter 100/181 (Epoch 12), Train Loss = 0.032
+Iter 150/181 (Epoch 12), Train Loss = 0.068
+train Loss: 0.0566 Acc: 0.9856  Time: 507.0649
+val Loss: 0.8106 Acc: 0.7802  Time: 513.8561
+
+Epoch 14/15
+----------
+Iter 0/181 (Epoch 13), Train Loss = 0.018
+Iter 50/181 (Epoch 13), Train Loss = 0.133
+Iter 100/181 (Epoch 13), Train Loss = 0.075
+Iter 150/181 (Epoch 13), Train Loss = 0.021
+train Loss: 0.0341 Acc: 0.9950  Time: 545.8023
+val Loss: 0.8330 Acc: 0.7843  Time: 553.1391
+
+Epoch 15/15
+----------
+Iter 0/181 (Epoch 14), Train Loss = 0.032
+Iter 50/181 (Epoch 14), Train Loss = 0.006
+Iter 100/181 (Epoch 14), Train Loss = 0.026
+Iter 150/181 (Epoch 14), Train Loss = 0.116
+train Loss: 0.0185 Acc: 0.9974  Time: 585.0042
+val Loss: 1.0068 Acc: 0.7781  Time: 591.7141
+Best model at 4 with lowest val loss 0.7141548228995049
+Training complete in 9m 52s
+Best val acc: 0.787043

@@ -71,7 +71,7 @@ def main():
     idx = 0
     for g in humanlabels_gender:
         for r in humanlabels_race:
-            print('{:<8}, {:<16}: {:.2f}%'.format(g, r, 100. * cm.diagonal()[idx]), flush=True)
+            print('{:<2}, {:<2}: {:.2f}%'.format(g, r, 100. * cm.diagonal()[idx]), flush=True)
             idx += 1
 
     # Print results to file

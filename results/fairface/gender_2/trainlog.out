@@ -1,0 +1,198 @@
+Training three-way split ensemble
+{'batchsize': 64, 'labels_train': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_2.pkl', 'labels_val': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_train_20.pkl', 'labels_test': None, 'num_epochs': 5, 'lr': 0.0001, 'print_freq': 500, 'num_classes': 2, 'model_path': None, 'dtype': torch.float32, 'outdir': '../results/fairface/gender_2'} 
+
+Training on cuda:0
+	 conv1.weight
+	 bn1.weight
+	 bn1.bias
+	 layer1.0.conv1.weight
+	 layer1.0.bn1.weight
+	 layer1.0.bn1.bias
+	 layer1.0.conv2.weight
+	 layer1.0.bn2.weight
+	 layer1.0.bn2.bias
+	 layer1.0.conv3.weight
+	 layer1.0.bn3.weight
+	 layer1.0.bn3.bias
+	 layer1.0.downsample.0.weight
+	 layer1.0.downsample.1.weight
+	 layer1.0.downsample.1.bias
+	 layer1.1.conv1.weight
+	 layer1.1.bn1.weight
+	 layer1.1.bn1.bias
+	 layer1.1.conv2.weight
+	 layer1.1.bn2.weight
+	 layer1.1.bn2.bias
+	 layer1.1.conv3.weight
+	 layer1.1.bn3.weight
+	 layer1.1.bn3.bias
+	 layer1.2.conv1.weight
+	 layer1.2.bn1.weight
+	 layer1.2.bn1.bias
+	 layer1.2.conv2.weight
+	 layer1.2.bn2.weight
+	 layer1.2.bn2.bias
+	 layer1.2.conv3.weight
+	 layer1.2.bn3.weight
+	 layer1.2.bn3.bias
+	 layer2.0.conv1.weight
+	 layer2.0.bn1.weight
+	 layer2.0.bn1.bias
+	 layer2.0.conv2.weight
+	 layer2.0.bn2.weight
+	 layer2.0.bn2.bias
+	 layer2.0.conv3.weight
+	 layer2.0.bn3.weight
+	 layer2.0.bn3.bias
+	 layer2.0.downsample.0.weight
+	 layer2.0.downsample.1.weight
+	 layer2.0.downsample.1.bias
+	 layer2.1.conv1.weight
+	 layer2.1.bn1.weight
+	 layer2.1.bn1.bias
+	 layer2.1.conv2.weight
+	 layer2.1.bn2.weight
+	 layer2.1.bn2.bias
+	 layer2.1.conv3.weight
+	 layer2.1.bn3.weight
+	 layer2.1.bn3.bias
+	 layer2.2.conv1.weight
+	 layer2.2.bn1.weight
+	 layer2.2.bn1.bias
+	 layer2.2.conv2.weight
+	 layer2.2.bn2.weight
+	 layer2.2.bn2.bias
+	 layer2.2.conv3.weight
+	 layer2.2.bn3.weight
+	 layer2.2.bn3.bias
+	 layer2.3.conv1.weight
+	 layer2.3.bn1.weight
+	 layer2.3.bn1.bias
+	 layer2.3.conv2.weight
+	 layer2.3.bn2.weight
+	 layer2.3.bn2.bias
+	 layer2.3.conv3.weight
+	 layer2.3.bn3.weight
+	 layer2.3.bn3.bias
+	 layer3.0.conv1.weight
+	 layer3.0.bn1.weight
+	 layer3.0.bn1.bias
+	 layer3.0.conv2.weight
+	 layer3.0.bn2.weight
+	 layer3.0.bn2.bias
+	 layer3.0.conv3.weight
+	 layer3.0.bn3.weight
+	 layer3.0.bn3.bias
+	 layer3.0.downsample.0.weight
+	 layer3.0.downsample.1.weight
+	 layer3.0.downsample.1.bias
+	 layer3.1.conv1.weight
+	 layer3.1.bn1.weight
+	 layer3.1.bn1.bias
+	 layer3.1.conv2.weight
+	 layer3.1.bn2.weight
+	 layer3.1.bn2.bias
+	 layer3.1.conv3.weight
+	 layer3.1.bn3.weight
+	 layer3.1.bn3.bias
+	 layer3.2.conv1.weight
+	 layer3.2.bn1.weight
+	 layer3.2.bn1.bias
+	 layer3.2.conv2.weight
+	 layer3.2.bn2.weight
+	 layer3.2.bn2.bias
+	 layer3.2.conv3.weight
+	 layer3.2.bn3.weight
+	 layer3.2.bn3.bias
+	 layer3.3.conv1.weight
+	 layer3.3.bn1.weight
+	 layer3.3.bn1.bias
+	 layer3.3.conv2.weight
+	 layer3.3.bn2.weight
+	 layer3.3.bn2.bias
+	 layer3.3.conv3.weight
+	 layer3.3.bn3.weight
+	 layer3.3.bn3.bias
+	 layer3.4.conv1.weight
+	 layer3.4.bn1.weight
+	 layer3.4.bn1.bias
+	 layer3.4.conv2.weight
+	 layer3.4.bn2.weight
+	 layer3.4.bn2.bias
+	 layer3.4.conv3.weight
+	 layer3.4.bn3.weight
+	 layer3.4.bn3.bias
+	 layer3.5.conv1.weight
+	 layer3.5.bn1.weight
+	 layer3.5.bn1.bias
+	 layer3.5.conv2.weight
+	 layer3.5.bn2.weight
+	 layer3.5.bn2.bias
+	 layer3.5.conv3.weight
+	 layer3.5.bn3.weight
+	 layer3.5.bn3.bias
+	 layer4.0.conv1.weight
+	 layer4.0.bn1.weight
+	 layer4.0.bn1.bias
+	 layer4.0.conv2.weight
+	 layer4.0.bn2.weight
+	 layer4.0.bn2.bias
+	 layer4.0.conv3.weight
+	 layer4.0.bn3.weight
+	 layer4.0.bn3.bias
+	 layer4.0.downsample.0.weight
+	 layer4.0.downsample.1.weight
+	 layer4.0.downsample.1.bias
+	 layer4.1.conv1.weight
+	 layer4.1.bn1.weight
+	 layer4.1.bn1.bias
+	 layer4.1.conv2.weight
+	 layer4.1.bn2.weight
+	 layer4.1.bn2.bias
+	 layer4.1.conv3.weight
+	 layer4.1.bn3.weight
+	 layer4.1.bn3.bias
+	 layer4.2.conv1.weight
+	 layer4.2.bn1.weight
+	 layer4.2.bn1.bias
+	 layer4.2.conv2.weight
+	 layer4.2.bn2.weight
+	 layer4.2.bn2.bias
+	 layer4.2.conv3.weight
+	 layer4.2.bn3.weight
+	 layer4.2.bn3.bias
+	 fc.weight
+	 fc.bias
+
+Epoch 1/5
+----------
+Iter 0/335 (Epoch 0), Train Loss = 0.693
+train Loss: 0.3576 Acc: 0.8302  Time: 584.5680
+val Loss: 0.2329 Acc: 0.9059  Time: 697.5968
+
+Epoch 2/5
+----------
+Iter 0/335 (Epoch 1), Train Loss = 0.208
+train Loss: 0.1882 Acc: 0.9230  Time: 1283.5495
+val Loss: 0.1829 Acc: 0.9289  Time: 1396.6638
+
+Epoch 3/5
+----------
+Iter 0/335 (Epoch 2), Train Loss = 0.111
+train Loss: 0.1021 Acc: 0.9599  Time: 1982.2578
+val Loss: 0.1668 Acc: 0.9373  Time: 2095.4217
+
+Epoch 4/5
+----------
+Iter 0/335 (Epoch 3), Train Loss = 0.053
+train Loss: 0.0673 Acc: 0.9750  Time: 2681.5424
+val Loss: 0.2301 Acc: 0.9335  Time: 2794.7121
+
+Epoch 5/5
+----------
+Iter 0/335 (Epoch 4), Train Loss = 0.038
+train Loss: 0.0538 Acc: 0.9797  Time: 3379.5377
+val Loss: 0.2124 Acc: 0.9328  Time: 3492.4051
+Best model at 2 with lowest val loss 0.16681234154501606
+Training complete in 58m 13s
+Best val acc: 0.937271
