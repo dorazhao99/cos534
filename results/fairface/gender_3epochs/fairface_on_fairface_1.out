@@ -1,0 +1,6 @@
+Evaluating classifier
+{'humanlabels': '/n/fs/visualai-scr/sharonz/cos534/data/gender.json', 'modelpath': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/gender_23epochs/model_1.pth', 'labels_test': '/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl', 'batchsize': 64, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 2, 'outfile': '/n/fs/visualai-scr/sharonz/cos534/results/fairface/gender/fairface_eval.json'} 
+
+Total accuracy: 89.87%
+Accuracy for F              : 93.72%
+Accuracy for M              : 86.24%
