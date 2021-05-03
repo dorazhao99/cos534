@@ -10,18 +10,23 @@ import collections
 
 from statsmodels.stats.inter_rater import fleiss_kappa
 
-def compute_fleiss_kappas(eval_pred, eval_true, num_categs):
+def compute_fleiss_kappas(eval_pred, eval_true, num_categs, category_name):
     """
     eval_pred: a list of lists of all predictions for race or gender for each model
     eval_true: a list of lists of all ground truth labels for race or gender, in 
           the same order as the pred list, for each model
     num_categs: int for all possible category labels (e.g., 2 for gender, 4 for race)
     """
+    idx = -1
+    if category_name=='gender':
+        idx = 0
+    elif category_name == 'race':
+        idx = 1
     fleiss_inputs = np.zeros((len(eval_pred[0]), num_categs))
     for i,pred in enumerate(eval_pred):
         for j,p in enumerate(pred):
-            fleiss_inputs[idx][p] += 1
-
+            fleiss_inputs[j][p[idx]] += 1
+    print(fleiss_inputs)
     fleiss_kappas = []
     for r in range(fleiss_inputs.shape[0]):
         fleiss_kappas.append(fleiss_kappa(fleiss_inputs[r]))
@@ -66,7 +71,7 @@ for f in arg['evals']:
     evals_true.append(eval['true'])
 
 # Get all individual gender fleiss kappa scores
-fleiss_kappas_all = compute_fleiss_kappas(evals_pred, evals_true, len(gender_to_idx))
+fleiss_kappas_all = compute_fleiss_kappas(evals_pred, evals_true, len(gender_to_idx), category_name='gender')
 fleiss_kappas_by_gender = collections.defaultdict(list)
 gender_true = [t for t,_ in evals_true[0]]
 for i,fk in enumerate(fleiss_kappas):
@@ -80,7 +85,7 @@ with open('{}/gender_fleiss_kappas.json'.format(arg['outdir']), 'w') as f:
     json.dump(fleiss_kappas_by_gender, f)
 
 # Get all individual race fleiss kappa scores
-fleiss_kappas_all = compute_fleiss_kappas(evals_pred, evals_true, len(race_to_idx))
+fleiss_kappas_all = compute_fleiss_kappas(evals_pred, evals_true, len(race_to_idx), category_name='race')
 fleiss_kappas_by_race = collections.defaultdict(list)
 race_true = [t for _,t in evals_true[0]]
 for i,fk in enumerate(fleiss_kappas):
