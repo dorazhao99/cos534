@@ -139,5 +139,7 @@ results/fairface/race_1/model*
 results/fairface/race_2/model*
 results/fairface/race_3/model*
 
+results/LAOFIW/laofiw_aliggned/model*
+
 # Face landmarks .dat file
 data/shape_predictor_68_face_landmarks.dat
