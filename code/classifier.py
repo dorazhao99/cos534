@@ -37,11 +37,12 @@ class Classifier():
         # Observe that all parameters are being optimized
         params_to_update = self.model.resnet.parameters()
         if feature_extract:
-            params_to_update = []
-            for name,param in self.model.resnet.named_parameters():
-                if param.requires_grad == True:
-                    params_to_update.append(param)
-                    print("\t", name)
+        #    params_to_update = []
+        #    for name,param in self.model.resnet.named_parameters():
+        #        if param.requires_grad == True:
+        #            params_to_update.append(param)
+        #            print("\t", name)
+            pass
         else:
             for name,param in self.model.resnet.named_parameters():
                 if param.requires_grad == True:
