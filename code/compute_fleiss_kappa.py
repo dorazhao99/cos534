@@ -5,6 +5,7 @@ import numpy as np
 import argparse
 
 from statsmodels.stats.inter_rater import fleiss_kappa
+from nltk import agreement
 
 def compute_fleiss_kappa(eval_pred, eval_true, group, num_categs):
     """
@@ -23,6 +24,9 @@ def compute_fleiss_kappa(eval_pred, eval_true, group, num_categs):
             if eval_true[i][j] == group:
                 fleiss_inputs[idx][p] += 1
                 idx += 1
+
+    for r in range(num_subjects):
+        print(fleiss_inputs[r])
 
     return fleiss_kappa(fleiss_inputs)
 
