@@ -14,17 +14,17 @@
 
 source /n/fs/interp-scr/sharonz/interp/bin/activate
 
-JOB=11
+JOB=3
 
 if [[ $JOB == 0 ]]
 then
   echo Training classifier
 
-  TYPE="gender"
+  TYPE="race"
   DATASET="fairface"
   LABELS_TRAIN="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_train_80.pkl"
   LABELS_VAL="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_train_20.pkl"
-  NUM_EPOCHS=15
+  NUM_EPOCHS=2
   if [[ $TYPE == "gender" ]]
   then
     NUM_CLASSES=2
@@ -34,19 +34,20 @@ then
   LR=0.0001
   BATCHSIZE=64
   PRINT_FREQ=500
-  OUTDIR="../results/${DATASET}/${TYPE}"
+  SAVE_FREQ=1
+  OUTDIR="../results/${DATASET}/${TYPE}_2epochs"
 
   python train.py \
     --labels_train $LABELS_TRAIN --labels_val $LABELS_VAL \
     --batchsize $BATCHSIZE --num_epochs $NUM_EPOCHS --num_classes $NUM_CLASSES --lr $LR \
-    --print_freq $PRINT_FREQ --outdir $OUTDIR
+    --print_freq $PRINT_FREQ --save_freq $SAVE_FREQ --outdir $OUTDIR
 fi
 
 if [[ $JOB == 1 ]]
 then
   echo Evaluating classifier
 
-  TYPE="gender"
+  TYPE="race"
   MODELPATH="/n/fs/visualai-scr/sharonz/cos534/results/fairface/${TYPE}/model_best.pth"
   OUTFILE="/n/fs/visualai-scr/sharonz/cos534/results/fairface/${TYPE}/fairface_eval.json"
   LABELS_TEST="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_val.pkl"
@@ -89,13 +90,13 @@ if [[ $JOB == 3 ]]
 then
   echo Cross-evaluating classifiers on FairFace dataset
 
-  TYPE="gender"
-  DATASET="bfw"
-  FOLDER="/n/fs/visualai-scr/sharonz/cos534"
-  MODELPATH="${FOLDER}/results/${DATASET}/${TYPE}/model_best.pth"
-  OUTFILE="${FOLDER}/results/fairface/${TYPE}/${DATASET}_eval.json"
+  TYPE="race"
+  DATASET="laofiw"
+  FOLDER="/n/fs/visualai-scr/sharonz"
+  MODELPATH="${FOLDER}/other/${DATASET}/${TYPE}/model_best.pth"
+  OUTFILE="${FOLDER}/cos534/results/fairface/${TYPE}/${DATASET}_eval.json"
   LABELS_TEST="/n/fs/visualai-scr/sharonz/fairface/labels_${TYPE}_val.pkl"
-  HUMANLABELS="${FOLDER}/data/${TYPE}.json"
+  HUMANLABELS="${FOLDER}/cos534/data/${TYPE}.json"
   BATCHSIZE=64
   if [[ $TYPE == "gender" ]]
   then
@@ -113,14 +114,14 @@ if [[ $JOB == 4 ]]
 then
   echo Evaluating intersectional classifiers on FairFace dataset
 
-  DATASET="bfw"
-  FOLDER="/n/fs/visualai-scr/sharonz/cos534"
-  MODELPATH_RACE="${FOLDER}/results/${DATASET}/race/model_best.pth"
-  MODELPATH_GENDER="${FOLDER}/results/${DATASET}/gender/model_best.pth"
+  DATASET="laofiw"
+  FOLDER="/n/fs/visualai-scr/sharonz"
+  MODELPATH_RACE="${FOLDER}/other/${DATASET}/race/model_best.pth"
+  MODELPATH_GENDER="${FOLDER}/other/${DATASET}/gender/model_best.pth"
   LABELS_RACE="/n/fs/visualai-scr/sharonz/fairface/labels_race_val.pkl"
   LABELS_GENDER="/n/fs/visualai-scr/sharonz/fairface/labels_gender_val.pkl"
-  HUMANLABELS_RACE="${FOLDER}/data/race.json"
-  HUMANLABELS_GENDER="${FOLDER}/data/gender.json"
+  HUMANLABELS_RACE="${FOLDER}/cos534/data/race.json"
+  HUMANLABELS_GENDER="${FOLDER}/cos534/data/gender.json"
   BATCHSIZE=64
   NUM_CLASSES_RACE=4
   NUM_CLASSES_GENDER=2
@@ -150,12 +151,16 @@ then
   echo Compute Fleiss Kappa scores for Table 3
 
   FOLDER="/n/fs/visualai-scr/sharonz/cos534"
-  EVALS=("${FOLDER}/results/fairface/fairface_on_fairface_eval.json" \
-         "${FOLDER}/results/fairface/bfw_on_fairface_eval.json")
+  TYPE="race"
+  EVALS=("${FOLDER}/results/fairface/${TYPE}/fairface_eval.json" \
+         "${FOLDER}/results/fairface/${TYPE}/bfw_eval.json" \
+         "${FOLDER}/results/fairface/${TYPE}/laofiw_eval.json")
   RACE_TO_IDX="${FOLDER}/data/race.json"
   GENDER_TO_IDX="${FOLDER}/data/gender.json"
 
-  python compute_fleiss_kappa.py --evals ${EVALS[*]} --race_to_idx $RACE_TO_IDX --gender_to_idx $GENDER_TO_IDX
+  python compute_fleiss_kappa.py --evals ${EVALS[*]} \
+    --race_to_idx $RACE_TO_IDX 
+    #--gender_to_idx $GENDER_TO_IDX
 fi
 
 if [[ $JOB == 7 ]]
