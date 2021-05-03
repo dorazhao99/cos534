@@ -25,6 +25,9 @@ def compute_fleiss_kappas(eval_pred, eval_true, num_categs, category_name):
             fleiss_inputs[j][p[idx]] += 1
     return fleiss_kappa(fleiss_inputs)
 
+# example usage 
+# python3 code/create_figures/create_table_2_entry.py --evals results/fairface/bfw_on_fairface_3_eval.json results/fairface/bfw_on_fairface_2_eval.json results/fairface/bfw_on_fairface_1_eval.json --gender_to_idx data/gender.json --race_to_idx data/race.json 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--evals', nargs='+', type=str, default=[])
 parser.add_argument('--gender_to_idx', type=str, required=True)
