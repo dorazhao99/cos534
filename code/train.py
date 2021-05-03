@@ -11,7 +11,7 @@ import copy
 from classifier import Classifier
 from load_data import *
     
-def train_model(classifier, outdir, device, dataloaders, num_epochs):
+def train_model(classifier, outdir, device, dataloaders, num_epochs, save_freq=5):
     since = time.time()
 
     val_acc_history = []; loss_epoch_list = []
@@ -47,7 +47,7 @@ def train_model(classifier, outdir, device, dataloaders, num_epochs):
                 loss_epoch_list.append(epoch_loss)
 
                 # Save the model
-                if (epoch + 1) % 5 == 0:
+                if (epoch + 1) % save_freq == 0:
                     torch.save(classifier.model.state_dict(), '{}/model_{}.pth'.format(outdir, epoch))
                     
         classifier.epoch += 1
@@ -92,6 +92,7 @@ def main():
     parser.add_argument('--num_classes', type=int, default=2)
     parser.add_argument('--model_path', type=str, default=None)
     parser.add_argument('--dtype', default=torch.float32)
+    parser.add_argument('--save_freq', type=int, default=5)
     parser.add_argument('--outdir', type=str)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
@@ -134,7 +135,8 @@ def main():
     # Train and evaluate
     best_classifier, hist = train_model(classifier, arg['outdir'], device,
                                         dataloaders_dict, 
-                                        num_epochs=arg['num_epochs'])
+                                        num_epochs=arg['num_epochs'],
+                                        save_freq=arg['save_freq'])
 
 if __name__ == "__main__":
     main()
