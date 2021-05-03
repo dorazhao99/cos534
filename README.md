@@ -46,6 +46,26 @@ All pre-trained models are backed up on the shared Google drive. Try not to add 
 
 *Computing Fleiss Kappa scores*
 
-The method `fleiss_kappa` from `statsmodel` is used. The Fleiss-Kappa score is evaluated for each group, e.g. 'Black', 'Female', 'Asian-Male', etc. The input consists of a `num_subjects * num_categories` table, where row r of this table corresponds to a particular input image with ground truth label as the group being evaluated. 
+`compute_fleiss_kappas.py`
 
-Each column corresponds to a possible label (e.g. if we are evaluating 'Male', then there are two possible labels, 'Male' and 'Female'). To fill in the table, tally up all predictions assigned by each dataset model on each example. Thus the sum over each row should be identical, and should equal the number of models tested.
+The argument `--evals` should be a list of all .json files that have prediction and ground truths. For example, if we are measuring agreement between LAOFIW, BFW, CC, FairFace on race, then it should be a list of four .json files containing the output race predictions and ground truths (and filepaths to the images).
+
+The arguments `--race_to_idx` and `--gender_to_idx` should point to the .json files containing the humanlabel to index mapping for possible labels (e.g. 'F': 0, 'M': 1 for the case of gender). If only measuring agreement between race (i.e. anytime LAOFIW is included), then set `--gender_to_idx` to `None` (i.e. just do not include the flag in the shell script, it is set to `None` by default). If both `--race_to_idx` and `--gender_to_idx` are set, then an intersectional analysis will also be conducted; otherwise, only one or the other will be analyzed.
+
+Sample usages:
+
+```
+EVALS=("fairface_eval.json" "bfw_eval.json" "laofiw_eval.json")
+RACE_TO_IDX="race.json"
+
+python compute_fleiss_kappa.py --evals ${EVALS[*]} --race_to_idx $RACE_TO_IDX
+```
+
+
+```
+EVALS=("fairface_eval.json" "bfw_eval.json" "cc_eval.json")
+RACE_TO_IDX="race.json"
+GENDER_TO_IDX="gender.json"
+
+python compute_fleiss_kappa.py --evals ${EVALS[*]} --race_to_idx $RACE_TO_IDX --gender_to_idx $GENDER_TO_IDX
+```
