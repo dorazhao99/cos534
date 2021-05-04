@@ -36,18 +36,17 @@ class Classifier():
 
         # Observe that all parameters are being optimized
         params_to_update = self.model.resnet.parameters()
-        if feature_extract:
+        #if feature_extract:
         #    params_to_update = []
         #    for name,param in self.model.resnet.named_parameters():
         #        if param.requires_grad == True:
         #            params_to_update.append(param)
         #            print("\t", name)
-            pass
-        else:
-            for name,param in self.model.resnet.named_parameters():
-                if param.requires_grad == True:
-                    print("\t", name)
-            self.model = self.model.to(device=self.device, dtype=self.dtype)
+        #else:
+        #    for name,param in self.model.resnet.named_parameters():
+        #        if param.requires_grad == True:
+        #            print("\t", name)
+        self.model = self.model.to(device=self.device, dtype=self.dtype)
 
         self.optimizer = optim.Adam(params_to_update, lr=lr)
         self.criterion = nn.CrossEntropyLoss()        

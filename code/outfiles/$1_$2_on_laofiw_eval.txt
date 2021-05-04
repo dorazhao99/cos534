@@ -1,0 +1,17 @@
+{'humanlabels': '../data/race.json', 'modelpath': '/scratch/network/czye/race_models/fairface_best_3.pth', 'labels_test': '../data/LAOFIW/laofiw_test.pkl', 'batchsize': 32, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 4, 'outfile': '../results/LAOFIW/val/fairface_3_on_laofiw.json'} 
+
+Total accuracy: 73.35%
+Accuracy for W              : 86.63%
+Accuracy for B              : 67.01%
+Accuracy for A              : 76.81%
+Accuracy for I              : 61.54%
+Total accuracy: 69.03%
+Accuracy for W              : 79.42%
+Accuracy for B              : 54.06%
+Accuracy for A              : 85.78%
+Accuracy for I              : 54.49%
+Total accuracy: 71.58%
+Accuracy for W              : 90.12%
+Accuracy for B              : 69.54%
+Accuracy for A              : 72.87%
+Accuracy for I              : 52.78%
