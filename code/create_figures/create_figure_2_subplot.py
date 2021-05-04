@@ -44,6 +44,9 @@ arg = vars(parser.parse_args())
 assert len(arg['evals']) > 0
 print(arg, '\n', flush=True)
 
+if not os.path.exists(arg['outdir']):
+    os.makedirs(arg['outdir'])
+
 gender_to_idx = json.load(open(arg['gender_to_idx']))
 race_to_idx = json.load(open(arg['race_to_idx']))
 print(gender_to_idx)
@@ -61,10 +64,10 @@ for f in arg['evals']:
 hist_dicts_gender = create_histogram(evals_pred, evals_true, len(gender_to_idx), category_name='gender')
 fig, axs = plt.subplots(1, len(gender_to_idx), sharey=True, tight_layout=True)
 fig.suptitle("Gender ")
-fig.supxlabel("Label Homogeneity")
-fig.supylabel("Fraction of Individuals")
+#fig.xlabel("Label Homogeneity")
+#fig.ylabel("Fraction of Individuals")
 for k,v in gender_to_idx.items():
-    axs[v].hist(hist_dicts_gender[v])
+    axs[v].hist(hist_dicts_gender[v], 10, density=True)
     axs[v].set_title(k)
 plt.savefig(f'{arg["outdir"]}/fig2_gender.png')
 
@@ -73,9 +76,9 @@ hist_dicts_race = create_histogram(evals_pred, evals_true, len(race_to_idx), cat
 fig, axs = plt.subplots(1, len(race_to_idx), sharey=True, tight_layout=True)
 print(race_to_idx)
 fig.suptitle("Race ")
-fig.supxlabel("Label Homogeneity")
-fig.supylabel("Fraction of Individuals")
+#fig.supxlabel("Label Homogeneity")
+#fig.supylabel("Fraction of Individuals")
 for k,v in race_to_idx.items():
-    axs[v].hist(hist_dicts_race[v])
+    axs[v].hist(hist_dicts_race[v], 10, density=True)
     axs[v].set_title(k)
 plt.savefig(f'{arg["outdir"]}/fig2_race.png')
