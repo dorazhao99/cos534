@@ -1,6 +1,7 @@
 import pickle, time, argparse, json
 from os import path, mkdir
 import numpy as np
+import matplotlib.pyplot as plt
 import torch
 import torch.optim as optim
 from torchvision import models
