@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--num_classes_gender', type=int, default=4)
     parser.add_argument('--num_classes_race', type=int, default=2)
     parser.add_argument('--outfile', type=str)
+    parser.add_argument('--savefig', action='store_true', default=True)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
     
@@ -67,6 +68,16 @@ def main():
     y_true = 10. * y_true_gender + y_true_race
     cm = confusion_matrix(y_true, y_preds)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] 
+
+    if arg['savefig']:
+        # Save confusion matrix
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        mat = ax.matshow(cm)
+        fig.colorbar(mat, orientation='vertical')
+        plt.savefig('{}.png'.format(arg['outfile'].split('.')[0]))
+        plt.show()
+        plt.close()
 
     idx = 0
     for g in humanlabels_gender:

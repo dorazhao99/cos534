@@ -1,6 +1,7 @@
 import pickle, time, argparse, json
 from os import path, mkdir
 import numpy as np
+import matplotlib.pyplot as plt
 import torch
 import torch.optim as optim
 from torchvision import models
@@ -19,6 +20,7 @@ def main():
     parser.add_argument('--dtype', default=torch.float32)
     parser.add_argument('--num_classes', type=int, default=4)
     parser.add_argument('--outfile', type=str)
+    parser.add_argument('--savefig', action='store_true', default=True)
     arg = vars(parser.parse_args())
     print(arg, '\n', flush=True)
     
@@ -48,6 +50,16 @@ def main():
     # Get confusion matrix and normalize diagonal entries
     cm = confusion_matrix(y_true, y_preds)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+    if arg['savefig']:
+        # Save confusion matrix
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        mat = ax.matshow(cm)
+        fig.colorbar(mat, orientation='vertical')
+        plt.savefig('{}.png'.format(arg['outfile'].split('.')[0]))
+        plt.show()
+        plt.close()
     
     for label in humanlabels:
         idx = humanlabels[label]
