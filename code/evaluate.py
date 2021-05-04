@@ -2,6 +2,7 @@ import pickle, time, argparse, json
 from os import path, mkdir
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import torch
 import torch.optim as optim
 from torchvision import models
@@ -56,6 +57,11 @@ def main():
         fig = plt.figure()
         ax = fig.add_subplot(111)
         mat = ax.matshow(cm)
+        ax.set_xticklabels([''] + inter_labels, rotation='vertical')
+        ax.set_yticklabels([''] + inter_labels)
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+        ax.xaxis.set_ticks_position('bottom')
         fig.colorbar(mat, orientation='vertical')
         plt.savefig('{}.png'.format(arg['outfile'].split('.')[0]))
         plt.show()
