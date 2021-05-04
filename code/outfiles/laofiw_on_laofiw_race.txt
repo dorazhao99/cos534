@@ -1,0 +1,7 @@
+{'humanlabels': '../data/race.json', 'modelpath': '/scratch/network/czye/race_models/model_laofiw.pth', 'labels_test': '/scratch/network/czye/cos534/data/LAOFIW/laofiw_test.pkl', 'batchsize': 32, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 4, 'outfile': '../results/LAOFIW/val/laofiw_on_laofiw_eval.json'} 
+
+Total accuracy: 78.23%
+Accuracy for W              : 75.51%
+Accuracy for B              : 87.31%
+Accuracy for A              : 80.74%
+Accuracy for I              : 70.94%

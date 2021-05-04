@@ -1,0 +1,2 @@
+{'humanlabels': '../data/race.json', 'modelpath': '/scratch/network/czye/race_models/model_bfw.pth', 'labels_test': '/scratch/network/czye/cos534/data/LAOFIW/laofiw_test.pkl', 'batchsize': 32, 'device': device(type='cuda'), 'dtype': torch.float32, 'num_classes': 4, 'outfile': '../results/LAOFIW/val/bfw_on_laofiw_eval.json'} 
+
