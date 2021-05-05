@@ -26,7 +26,6 @@ def main():
     print(arg, '\n', flush=True)
     
     humanlabels = json.load(open(arg['humanlabels']))
-    labels = pickle.load(open(arg['labels_test'], 'rb'))
 
     # Initialize the model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -39,7 +38,7 @@ def main():
     testset = create_dataset(labels_path=arg['labels_test'], batch_size=arg['batchsize'], train=False)
 
     # Do inference with the model
-    loss, corrects, y_preds, y_true = classifier.test(testset)
+    loss, corrects, y_preds, y_true, y_id = classifier.test(testset)
     y_preds = torch.cat(y_preds); y_true = torch.cat(y_true)
     y_preds = y_preds.detach().cpu().numpy()
     y_true = y_true.detach().cpu().numpy()
@@ -72,7 +71,7 @@ def main():
         print("Accuracy for {:<15}: {:.2f}%".format(label, 100.0 * cm.diagonal()[idx]), flush=True)
 
     # Print results to file
-    output = {'pred': list(y_preds.tolist()), 'true': np.stack(y_true).tolist(), 'labels': [x for x in labels]}
+    output = {'pred': list(y_preds.tolist()), 'true': np.stack(y_true).tolist(), 'labels': y_id}
     with open(arg['outfile'], 'w') as f:
         json.dump(output, f)
     

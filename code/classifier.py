@@ -103,9 +103,9 @@ class Classifier():
         
         # Iterate over data.
         total_loss = 0.0; corrects = 0
-        total_preds = []; total_true = []
+        total_preds = []; total_true = []; total_IDs = []
         with torch.no_grad():
-            for i, (inputs, labels, _) in enumerate(dataloader):
+            for i, (inputs, labels, IDs) in enumerate(dataloader):
                 start = time.time()
                 inputs = inputs.to(device=self.device, dtype=self.dtype)
                 labels = labels.to(device=self.device, dtype=self.dtype)
@@ -127,9 +127,11 @@ class Classifier():
                     _, preds = torch.max(outputs, 1)
                     total_preds.append(preds)
                     total_true.append(labels)
+                    for ID in IDs:
+                        total_IDs.append(ID)
                 # if i > 2: break                 
                 # Keep track of total corrects
                 total_loss += loss.item() * inputs.size(0)
                 corrects += torch.sum(preds == labels.data)
         self.scheduler.step(total_loss)
-        return total_loss, corrects, total_preds, total_true
+        return total_loss, corrects, total_preds, total_true, total_IDs
