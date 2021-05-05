@@ -9,10 +9,9 @@
 #SBATCH --mail-user=dorothyz@princeton.edu
 
 python evaluate.py \
---do_gender 0 \
---humanlabels ../data/$2.json \
---modelpath ../results/$1_$2/model_best.pth \
---labels_test ../data/$1/$1_$2_test.pkl \
+--humanlabels $3 \
+--modelpath $1 \
+--labels_test $2 \
 --batchsize 32 \
 --num_classes 2 \
---outfile ../results/$1_$2/eval.json
+--outfile $4

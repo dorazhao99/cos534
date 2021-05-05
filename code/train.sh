@@ -1,20 +1,19 @@
 #!/bin/bash
 #SBATCH --job-name=train_534
-#SBATCH --output=bfw_1_g.txt
+#SBATCH --output=cc_2_g.txt
 #
-##SBATCH --gres=gpu:0
+##SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=48:00:00
 #
 #SBATCH --mail-type=all
-#SBATCH --mail-user=czye@princeton.edu
+#SBATCH --mail-user=dorothyz@princeton.edu
 
 source /home/dorothyz/.bashrc
 
 conda activate 534
 
 python train.py \
-<<<<<<< HEAD
 --labels_train $1 \
 --labels_val $2 \
 --num_epochs 10 \
