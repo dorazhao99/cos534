@@ -32,7 +32,7 @@ def compute_fleiss_kappa(eval_pred, eval_true, num_categs, group=None):
 
     return fleiss_kappa(fleiss_inputs)
     """
-    
+     
     fleiss_inputs = []
     for model, preds in enumerate(eval_pred):
         labels = []
