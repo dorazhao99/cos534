@@ -56,12 +56,12 @@ def main():
     testset_race = create_dataset(labels_path=arg['labels_race'], batch_size=arg['batchsize'], train=False)
 
     # Do inference with the models
-    _, _, y_preds_gender, y_true_gender = classifier_gender.test(testset_gender)
+    _, _, y_preds_gender, y_true_gender, _ = classifier_gender.test(testset_gender)
     y_preds_gender = torch.cat(y_preds_gender); y_true_gender = torch.cat(y_true_gender)
     y_preds_gender = y_preds_gender.detach().cpu().numpy()
     y_true_gender = y_true_gender.detach().cpu().numpy()
     
-    _, _, y_preds_race, y_true_race = classifier_race.test(testset_race)
+    _, _, y_preds_race, y_true_race, _ = classifier_race.test(testset_race)
     y_preds_race = torch.cat(y_preds_race); y_true_race = torch.cat(y_true_race)
     y_preds_race = y_preds_race.detach().cpu().numpy()
     y_true_race = y_true_race.detach().cpu().numpy()

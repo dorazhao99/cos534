@@ -26,6 +26,7 @@ def main():
     print(arg, '\n', flush=True)
     
     humanlabels = json.load(open(arg['humanlabels']))
+    labels = [k for k,v in humanlabels.items()]
 
     # Initialize the model
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -56,8 +57,8 @@ def main():
         fig = plt.figure()
         ax = fig.add_subplot(111)
         mat = ax.matshow(cm)
-        ax.set_xticklabels([''] + inter_labels, rotation='vertical')
-        ax.set_yticklabels([''] + inter_labels)
+        ax.set_xticklabels([''] + labels, rotation='vertical')
+        ax.set_yticklabels([''] + labels)
         ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
         ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
         ax.xaxis.set_ticks_position('bottom')
